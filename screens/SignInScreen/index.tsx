@@ -10,7 +10,7 @@ import {
   SafeAreaView,
   KeyboardAvoidingView,
   Platform,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 import colors from '../../colors/colors';
 import {OvalOutlinedButton} from '../../theme';
@@ -35,7 +35,7 @@ const SignIn = (props: Props) => {
   };
 
   useEffect(() => {
-    if(Platform.OS === 'android'){
+    if (Platform.OS === 'android') {
       const open = Keyboard.addListener('keyboardDidHide', openKeybord);
       const close = Keyboard.addListener('keyboardDidShow', closeKeybord);
       return () => {
@@ -85,7 +85,7 @@ const SignIn = (props: Props) => {
   return (
     <SafeAreaView style={main}>
       <StatusBar backgroundColor={'#fff'} barStyle={'dark-content'} />
-      
+
       <ScrollView
         contentContainerStyle={content}
         keyboardShouldPersistTaps="handled"
@@ -93,40 +93,40 @@ const SignIn = (props: Props) => {
         <View style={titleBlock}>
           <Text style={title}>Login</Text>
         </View>
-        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : 'height'}
-      style={{flex: 1}}>
-        <View style={form}>
-          <View style={formTopStyle}>
-            <CustomInput
-              placeholder={'Your email address'}
-              label={'Email'}
-              value={email}
-              onChangeText={text => setEmail(text)}
-            />
-            <CustomInput
-              placeholder={'Password'}
-              label={'Password'}
-              secureTextEntry={true}
-              value={password}
-              onChangeText={text => setPassword(text)}
-            />
-            <TextButton title="forgot Password" titleColor={colors.pink} />
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={{flex: 1}}>
+          <View style={form}>
+            <View style={formTopStyle}>
+              <CustomInput
+                placeholder={'Your email address'}
+                label={'Email'}
+                value={email}
+                onChangeText={text => setEmail(text)}
+              />
+              <CustomInput
+                placeholder={'Password'}
+                label={'Password'}
+                secureTextEntry={true}
+                value={password}
+                onChangeText={text => setPassword(text)}
+              />
+              <TextButton title="forgot Password" titleColor={colors.pink} />
 
-            <Text style={loginWarning}>{props.authErr}</Text>
+              <Text style={loginWarning}>{props.authErr}</Text>
+            </View>
+            <View style={{marginBottom: 20}}>
+              <OvalSolidButton
+                title={!loading ? 'login' : ''}
+                icon={
+                  loading && <ActivityIndicator color={colors.grey} size={26} />
+                }
+                titleColor="#fff"
+                buttonColor={colors.pink}
+                onPress={signInHandl}
+              />
+            </View>
           </View>
-          <View style={{marginBottom: 20}}>
-            <OvalSolidButton
-              title={!loading ? 'login' : ''}
-              icon={
-                loading && <ActivityIndicator color={colors.grey} size={26} />
-              }
-              titleColor="#fff"
-              buttonColor={colors.pink}
-              onPress={signInHandl}
-            />
-          </View>
-          
-        </View>
         </KeyboardAvoidingView>
         {!isOpenKeyboard && (
           <View style={bottomBlock}>
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     fontFamily: 'SFProRounded-Bold',
     fontSize: SCREEN_WIDTH > 576 ? 28 : 20,
     color: colors.darckGrey,
-    marginBottom: 5
+    marginBottom: 5,
   },
   form: {
     justifyContent: 'space-between',

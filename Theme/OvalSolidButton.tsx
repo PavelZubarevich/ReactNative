@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   buttonStyle: {
     borderRadius: 20,
     height: SCREEN_WIDTH > 576 ? 50 : 40,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   titleStyle: {
     fontSize: SCREEN_WIDTH > 576 ? 18 : 12,
