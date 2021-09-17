@@ -9,8 +9,8 @@ import {
   Dimensions,
   Platform,
 } from 'react-native';
-import {useDispatch} from 'react-redux'
-import {logOut} from '../redux/actionCreators/actionCreators'
+import {useDispatch} from 'react-redux';
+import {logOut} from '../redux/actionCreators/actionCreators';
 
 interface IModal {
   showModal: boolean;
@@ -21,7 +21,7 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 export const LogOutModal: FC<IModal> = ({showModal, modalHandler}) => {
   const dispatch = useDispatch();
-  
+
   const {background, modal, textStyle} = styles;
   return (
     <Modal transparent visible={showModal} animationType="fade">

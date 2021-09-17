@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Image, StatusBar, StyleSheet, Platform, ImageBackground, View} from 'react-native';
+import {Image, StatusBar, StyleSheet, Platform, View} from 'react-native';
 import {
   createBottomTabNavigator,
   BottomTabBar,
@@ -15,10 +15,10 @@ import CardsImage from '../Assets/Images/cards.png';
 import {BlurView} from '@react-native-community/blur';
 
 const Tab = createBottomTabNavigator<BottomBarParams>();
-const PLATFORM_IOS = Platform.OS === 'ios'
+const PLATFORM_IOS = Platform.OS === 'ios';
 
 export const HomeTabs: FC = () => {
-  const {blurStyle, pink} = styles;
+  const {bottomTabsStyle, blurStyle, pink} = styles;
   return (
     <>
       <StatusBar backgroundColor={colors.pink} />
@@ -27,25 +27,23 @@ export const HomeTabs: FC = () => {
         screenOptions={{
           headerShown: false,
           tabBarActiveTintColor: colors.pink,
-          tabBarInactiveTintColor: colors.darckGrey,
+          tabBarInactiveTintColor: colors.darkGrey,
           tabBarStyle: PLATFORM_IOS && {
             borderTopColor: colors.grey,
-            backgroundColor: 'transparent'
-          }  
+            backgroundColor: 'transparent',
+          },
         }}
         tabBar={props => {
-          return (
-            PLATFORM_IOS ? (
-              <View style={{position: 'relative'}}>
-                <View style={pink}/>
-                <BlurView style={blurStyle} blurType='light' blurAmount={50}>   
-                  <BottomTabBar {...props} />             
-                </BlurView>
-              </View>
-            ) : (
-              <BottomTabBar {...props} />
-            )
-          )
+          return PLATFORM_IOS ? (
+            <View style={bottomTabsStyle}>
+              <View style={pink} />
+              <BlurView style={blurStyle} blurType="light" blurAmount={50}>
+                <BottomTabBar {...props} />
+              </BlurView>
+            </View>
+          ) : (
+            <BottomTabBar {...props} />
+          );
         }}>
         <Tab.Screen
           name="Home"
@@ -82,6 +80,9 @@ export const HomeTabs: FC = () => {
 };
 
 const styles = StyleSheet.create({
+  bottomTabsStyle: {
+    position: 'relative',
+  },
   blurStyle: {
     position: 'absolute',
     bottom: 0,
@@ -93,5 +94,5 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '50%',
     height: 20,
-  }
+  },
 });
