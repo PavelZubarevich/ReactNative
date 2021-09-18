@@ -5,7 +5,6 @@ import colors from '../colors/colors';
 import {BurgerBTN, Title, UserAvatar} from '../components';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-
 interface IHeader {
   title: string;
   amount: number;

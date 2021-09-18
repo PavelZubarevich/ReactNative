@@ -38,7 +38,7 @@ export const Home: FC<IHome> = ({navigation}) => {
     } else {
       setDayPart('evening');
     }
-  });
+  }, []);
 
   const generateGreeting = () => {
     const date = new Date();

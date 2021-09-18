@@ -11,7 +11,7 @@ export const CashCard: FC<IHome> = () => {
   return (
     <Card containerStyle={containerStyle}>
       <Card.Title style={titleStyle}>
-        <CashHeader title="accounts overview" amount={7000.80} />
+        <CashHeader title="accounts overview" amount={7000.8} />
       </Card.Title>
       <View style={listStyle}>
         <CashCardItem />
@@ -29,12 +29,10 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     borderWidth: 0,
     marginHorizontal: 0,
-    paddingHorizontal: 0
+    paddingHorizontal: 0,
   },
   titleStyle: {
     alignSelf: 'center',
   },
-  listStyle: {
-    
-  },
+  listStyle: {},
 });

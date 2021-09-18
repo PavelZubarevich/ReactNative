@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     height: SCREEN_WIDTH > 576 ? 50 : 40,
     justifyContent: 'center',
+    paddingVertical: 0,
   },
   titleStyle: {
     fontSize: SCREEN_WIDTH > 576 ? 18 : 12,

@@ -3,7 +3,6 @@ import {StyleSheet, View, Text} from 'react-native';
 import {Button, Card, ListItem} from 'react-native-elements';
 import colors from '../colors/colors';
 
-
 interface IItem {}
 
 export const CashCardItem: FC<IItem> = () => {
@@ -19,7 +18,5 @@ export const CashCardItem: FC<IItem> = () => {
 };
 
 const styles = StyleSheet.create({
-  containerStyle: {
-    
-  },
+  containerStyle: {},
 });
