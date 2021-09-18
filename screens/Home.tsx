@@ -1,42 +1,36 @@
 import React, {FC, useState, useEffect} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
-import {Button} from 'react-native-elements';
+import {StyleSheet, View, ScrollView, Text} from 'react-native';
 import colors from '../colors/colors';
 import {BurgerBTN, Title, CashCard} from '../components';
-import {HomeScreenNavigationProp} from '../types/types';
 import {AppHeader} from '../theme';
 
-interface IHome {
-  navigation: HomeScreenNavigationProp;
-}
-
 enum months {
-  'January',
-  'February',
-  'March',
-  'April ',
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr ',
   'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
 }
 
-export const Home: FC<IHome> = ({navigation}) => {
+export const Home: FC = () => {
   const [dayPart, setDayPart] = useState<string>('');
 
   useEffect(() => {
     const time = new Date().getHours();
 
     if (time > 4 && time <= 9) {
-      setDayPart('morning');
+      setDayPart('Morning');
     } else if (time > 9 && time <= 15) {
-      setDayPart('afternoon');
+      setDayPart('Afternoon');
     } else {
-      setDayPart('evening');
+      setDayPart('Evening');
     }
   }, []);
 
@@ -52,35 +46,25 @@ export const Home: FC<IHome> = ({navigation}) => {
   return (
     <View>
       <AppHeader leftComponent={<BurgerBTN />} centerComponent={<Title />} />
-      <View style={main}>
+      <ScrollView contentContainerStyle={main}>
         <Text style={greeting}>{generateGreeting()}</Text>
         <CashCard />
-      </View>
-      <Button
-        title="Checking"
-        type="outline"
-        onPress={() => {
-          navigation.navigate('Checking');
-        }}
-      />
-      <Button
-        title="Saving"
-        type="outline"
-        onPress={() => {
-          navigation.navigate('Saving', {subTitle: 'string'});
-        }}
-      />
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   main: {
-    padding: 15,
+    minHeight: '100%',
+    paddingTop: 10,
+    paddingBottom: 110,
+    paddingHorizontal: 15,
+    backgroundColor: colors.light,
   },
   greeting: {
     color: colors.grey,
-    fontSize: 14,
+    fontSize: 15,
     fontFamily: 'SFProRounded-Regular',
   },
 });

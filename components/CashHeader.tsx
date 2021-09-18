@@ -1,23 +1,22 @@
 import React, {FC} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
-import {Header, Button, Card} from 'react-native-elements';
+import {StyleSheet, Text, View} from 'react-native';
 import colors from '../colors/colors';
-import {BurgerBTN, Title, UserAvatar} from '../components';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 interface IHeader {
   title: string;
-  amount: number;
 }
 
-export const CashHeader: FC<IHeader> = ({title, amount}) => {
-  const {header, titleStyle, amountStyle, subTitleStyle} = styles;
+export const CashHeader: FC<IHeader> = ({title}) => {
+  const {header, titleStyle, amountMainStyle, amountSubStyle, subTitleStyle} =
+    styles;
   return (
     <View style={header}>
       <Text style={titleStyle}>{title}</Text>
-      <Text style={amountStyle}>${amount}</Text>
+      <Text style={amountMainStyle}>
+        $7,000.<Text style={amountSubStyle}>80</Text>
+      </Text>
+
       <Text style={subTitleStyle}>Total Available cash</Text>
-      <Icon name="call" size={30} color="#900" />
     </View>
   );
 };
@@ -27,20 +26,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   titleStyle: {
-    fontFamily: 'SFProRounded-Regular',
-    fontSize: 18,
+    fontFamily: 'SFProRounded-Bold',
+    color: colors.darkGrey,
     textTransform: 'capitalize',
-    color: colors.darckGrey,
-    marginBottom: 10,
+    fontSize: 19,
+    lineHeight: 19,
+    marginBottom: 15,
   },
-  amountStyle: {
+  amountMainStyle: {
     fontFamily: 'SFProRounded-Regular',
-    fontSize: 26,
-    color: colors.darckGrey,
+    fontSize: 28,
+    lineHeight: 28,
+    color: colors.darkGrey,
+  },
+  amountSubStyle: {
+    fontFamily: 'SFProRounded-Regular',
+    color: colors.darkGrey,
+    fontSize: 21,
+    lineHeight: 27,
   },
   subTitleStyle: {
     fontFamily: 'SFProRounded-Light',
-    fontSize: 14,
     color: colors.grey,
+    fontSize: 16,
   },
 });

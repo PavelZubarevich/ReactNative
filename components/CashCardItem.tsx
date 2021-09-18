@@ -1,22 +1,111 @@
 import React, {FC} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
-import {Button, Card, ListItem} from 'react-native-elements';
+import {StyleSheet, Text, View} from 'react-native';
+import {ListItem, Image} from 'react-native-elements';
 import colors from '../colors/colors';
 
-interface IItem {}
+interface IItem {
+  title: string;
+  titleIcon?: string;
+  subTitle: string;
+  amount: string;
+}
 
-export const CashCardItem: FC<IItem> = () => {
-  const {containerStyle} = styles;
+const getValue = (num: string, float: boolean): string => {
+  if (!float) {
+    return num.slice(0, num.indexOf('.', 0));
+  } else {
+    return num.slice(num.indexOf('.', 0) + 1, num.length);
+  }
+};
+
+export const CashCardItem: FC<IItem> = ({
+  title,
+  titleIcon,
+  subTitle,
+  amount,
+}) => {
+  const {
+    containerStyle,
+    itemStyle,
+    contentStyle,
+    leftContentStyle,
+    titleStyle,
+    iconStyle,
+    subTitleStyle,
+    amountBigStyle,
+    amountSmallStyle,
+  } = styles;
   return (
     <ListItem containerStyle={containerStyle}>
-      <ListItem.Content>
-        <ListItem.Title>Checking</ListItem.Title>
-        <ListItem.Subtitle>Main account (...0353)</ListItem.Subtitle>
+      <ListItem.Content style={itemStyle}>
+        <View style={contentStyle}>
+          <View style={leftContentStyle}>
+            <ListItem.Title style={titleStyle}>
+              {title}
+              {titleIcon && <Image source={titleIcon} style={iconStyle} />}
+            </ListItem.Title>
+            <ListItem.Subtitle style={subTitleStyle}>
+              {subTitle}
+            </ListItem.Subtitle>
+          </View>
+          <Text style={amountBigStyle}>
+            ${getValue(amount, false)}.
+            <Text style={amountSmallStyle}>{getValue(amount, true)}</Text>
+          </Text>
+        </View>
+        <ListItem.Chevron size={24} color={colors.pink} />
       </ListItem.Content>
     </ListItem>
   );
 };
 
 const styles = StyleSheet.create({
-  containerStyle: {},
+  containerStyle: {
+    paddingTop: 10,
+    paddingBottom: 0,
+    paddingRight: 10,
+  },
+  itemStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  contentStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '90%',
+  },
+  leftContentStyle: {
+    maxWidth: '65%',
+  },
+  titleStyle: {
+    fontFamily: 'SFProRounded-Regular',
+    fontSize: 17,
+    lineHeight: 17,
+    color: colors.darkGrey,
+    marginBottom: 7,
+  },
+  iconStyle: {
+    width: 13,
+    height: 13,
+    resizeMode: 'contain',
+    marginLeft: 5,
+  },
+  subTitleStyle: {
+    fontFamily: 'SFProRounded-Light',
+    fontSize: 15,
+    lineHeight: 15,
+    color: colors.grey,
+  },
+  amountBigStyle: {
+    fontFamily: 'SFProRounded-Regular',
+    fontSize: 21,
+    lineHeight: 21,
+    color: colors.darkGrey,
+  },
+  amountSmallStyle: {
+    fontFamily: 'SFProRounded-Regular',
+    fontSize: 17,
+    color: colors.darkGrey,
+  },
 });

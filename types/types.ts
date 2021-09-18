@@ -8,23 +8,19 @@ export type BottomBarParams = {
   Cards: undefined;
 };
 export type StackParams = {
-  SignIn: undefined;
   HomeTabs: undefined;
   Checking: {subTitle: string} | undefined;
   Saving: {subTitle: string} | undefined;
 };
 
-export type SignInStackProps = NativeStackScreenProps<StackParams, 'SignIn'>;
-export type SignInScreenNavigationProp = SignInStackProps['navigation'];
-
-export type HomeStackProps = NativeStackScreenProps<StackParams, 'HomeTabs'>;
-export type HomeScreenNavigationProp = HomeStackProps['navigation'];
+export type StackProps = NativeStackScreenProps<StackParams>;
+export type StackNavigationProp = StackProps['navigation'];
 
 export type CheckingStackProps = NativeStackScreenProps<
   StackParams,
   'Checking'
 >;
-export type CheckingScreenRouteProp = HomeStackProps['route'];
+export type CheckingScreenRouteProp = StackProps['route'];
 
 export type SavingStackProps = NativeStackScreenProps<StackParams, 'Saving'>;
-export type SavingScreenRouteProp = HomeStackProps['route'];
+export type SavingScreenRouteProp = StackProps['route'];
