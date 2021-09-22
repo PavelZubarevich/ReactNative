@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {SignedApp} from './screens';
+import {SignedApp} from './screens/SignedApp';
 
 const App: FC = () => {
   return (
