@@ -4,7 +4,8 @@ import {
   createBottomTabNavigator,
   BottomTabBar,
 } from '@react-navigation/bottom-tabs';
-import {Accounts, Giving, Payments, Cards, Home} from '.';
+import {Accounts, Giving, Payments, Cards} from '.';
+import {Home} from './Home';
 import {BottomBarParams} from '../types/types';
 import colors from '../colors/colors';
 import HomeImage from '../Assets/Images/home.png';

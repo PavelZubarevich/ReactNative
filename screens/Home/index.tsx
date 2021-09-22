@@ -1,58 +1,14 @@
-import React, {FC, useState, useEffect, useRef} from 'react';
-import {StyleSheet, View, ScrollView, Text, ListRenderItem} from 'react-native';
+import React, {FC, useState, useEffect} from 'react';
+import {StyleSheet, View, Text, ListRenderItem} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
-import {floor} from 'react-native-reanimated';
-import colors from '../colors/colors';
-import {BurgerBTN, Title, CashCard, GoodnessCard} from '../components';
-import {AppHeader} from '../theme';
-
-enum months {
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr ',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
-}
-
-interface ICardProps {
-  id: string;
-  image: string;
-  video?: string;
-}
+import colors from '../../colors/colors';
+import {BurgerBTN, Title, CashCard, GoodnessCard} from '../../components';
+import {AppHeader} from '../../theme';
+import {data, months} from './constants';
+import {ICardProps} from './types';
 
 export const Home: FC = () => {
   const [dayPart, setDayPart] = useState<string>('');
-  const [data, setData] = useState<Array<object>>([
-    {
-      id: '1',
-      image: require('../Assets/Images/rectangle2.png'),
-    },
-    {
-      id: '2',
-      image: require('../Assets/Images/rectangle.png'),
-      video:
-        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-    },
-    {
-      id: '3',
-      image: require('../Assets/Images/rectangle2.png'),
-      video:
-        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-    },
-    {
-      id: '4',
-      image: require('../Assets/Images/rectangle.png'),
-      video:
-        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-    },
-  ]);
 
   useEffect(() => {
     const time = new Date().getHours();
@@ -77,10 +33,6 @@ export const Home: FC = () => {
     return <GoodnessCard imageSource={item.image} videoSource={item.video} />;
   };
 
-  const onViewRef = React.useRef(({viewableItems, changed}) => {
-    console.log(viewableItems[0]);
-  });
-
   const {main, greeting} = styles;
   return (
     <View>
@@ -97,7 +49,6 @@ export const Home: FC = () => {
           keyExtractor={item => item.id}
           renderItem={renderItem}
           showsVerticalScrollIndicator={false}
-          onViewableItemsChanged={onViewRef.current}
         />
       </View>
     </View>
