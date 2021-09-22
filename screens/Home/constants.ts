@@ -29,13 +29,5 @@ export const data: Array<ICardProps> = [
   {
     id: '3',
     image: require('../../Assets/Images/rectangle2.png'),
-    video:
-      'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-  },
-  {
-    id: '4',
-    image: require('../../Assets/Images/rectangle.png'),
-    video:
-      'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
   },
 ];

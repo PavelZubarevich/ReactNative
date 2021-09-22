@@ -1,4 +1,4 @@
-import React, {FC, useRef} from 'react';
+import React, {FC} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {Card, Image} from 'react-native-elements';
 import colors from '../colors/colors';
@@ -6,6 +6,7 @@ import {OvalSolidButton} from '../theme';
 import Icon from 'react-native-vector-icons/Entypo';
 import {ImageSource} from 'react-native-vector-icons/Icon';
 import Video from 'react-native-video';
+import {InCenterConsumer} from '@n1ru4l/react-in-center-of-screen';
 
 interface ICard {
   imageSource: ImageSource;
@@ -27,50 +28,56 @@ export const GoodnessCard: FC<ICard> = ({imageSource, videoSource}) => {
     btnTitleStyle,
   } = styles;
   return (
-    <Card containerStyle={containerStyle}>
-      <View style={headerStyle}>
-        <Image
-          source={require('../Assets/Images/avatar.png')}
-          style={titleImage}
-        />
-        <View style={titleBlock}>
-          <Text style={titleStyle}>Your Giving impact</Text>
-          <Text style={subTitleStyle}>
-            St Jude
-            <Icon name="dot-single" size={13} color={colors.pink} />4 hrs ago
-          </Text>
-        </View>
-      </View>
-      <Card.Image source={imageSource} style={imageStyle} />
-      {/* {videoSource && (
-        <Video
-          paused
-          source={{
-            uri: `${videoSource}`,
-          }}
-          controls={true}
-          style={imageStyle}
-        />
-      )} */}
-
-      <Text style={textStyle}>
-        Danny, Your donation helped 5 amazing kids get much needed cancer
-        surgery, thanks for being amazing!
-      </Text>
-      <View style={btnStyle}>
-        <OvalSolidButton
-          title="Share to spread the world"
-          titleStyle={btnTitleStyle}
-          buttonColor={colors.pink}
-          icon={
+    <InCenterConsumer>
+      {({isInCenter}: any) => (
+        <Card containerStyle={containerStyle}>
+          <View style={headerStyle}>
             <Image
-              source={require('../Assets/Images/shareArrow.png')}
-              style={btnIcon}
+              source={require('../Assets/Images/avatar.png')}
+              style={titleImage}
             />
-          }
-        />
-      </View>
-    </Card>
+            <View style={titleBlock}>
+              <Text style={titleStyle}>Your Giving impact</Text>
+              <Text style={subTitleStyle}>
+                St Jude
+                <Icon name="dot-single" size={13} color={colors.pink} />4 hrs
+                ago
+              </Text>
+            </View>
+          </View>
+          {isInCenter && videoSource ? (
+            <Video
+              source={{
+                uri: `${videoSource}`,
+              }}
+              controls={false}
+              style={imageStyle}
+              resizeMode="cover"
+            />
+          ) : (
+            <Card.Image source={imageSource} style={imageStyle} />
+          )}
+
+          <Text style={textStyle}>
+            Danny, Your donation helped 5 amazing kids get much needed cancer
+            surgery, thanks for being amazing!
+          </Text>
+          <View style={btnStyle}>
+            <OvalSolidButton
+              title="Share to spread the world"
+              titleStyle={btnTitleStyle}
+              buttonColor={colors.pink}
+              icon={
+                <Image
+                  source={require('../Assets/Images/shareArrow.png')}
+                  style={btnIcon}
+                />
+              }
+            />
+          </View>
+        </Card>
+      )}
+    </InCenterConsumer>
   );
 };
 

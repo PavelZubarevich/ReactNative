@@ -1,11 +1,19 @@
 import React, {FC, useState, useEffect} from 'react';
-import {StyleSheet, View, Text, ListRenderItem} from 'react-native';
+import {StyleSheet, View, Text, ListRenderItem, Dimensions} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import colors from '../../colors/colors';
 import {BurgerBTN, Title, CashCard, GoodnessCard} from '../../components';
 import {AppHeader} from '../../theme';
 import {data, months} from './constants';
 import {ICardProps} from './types';
+import {
+  OffsetYProvider,
+  IndexProvider,
+} from '@n1ru4l/react-in-center-of-screen';
+
+const {height: windowHeight} = Dimensions.get('window');
+
+const boxHeight = windowHeight / 2;
 
 export const Home: FC = () => {
   const [dayPart, setDayPart] = useState<string>('');
@@ -29,27 +37,41 @@ export const Home: FC = () => {
     } ${date.getDate()}, ${date.getFullYear()}`;
   };
 
-  const renderItem: ListRenderItem<ICardProps> = ({item}) => {
-    return <GoodnessCard imageSource={item.image} videoSource={item.video} />;
-  };
+  const renderItem: ListRenderItem<ICardProps> = ({index, item}) => (
+    <IndexProvider index={index}>
+      {() => <GoodnessCard imageSource={item.image} videoSource={item.video} />}
+    </IndexProvider>
+  );
 
   const {main, greeting} = styles;
   return (
     <View>
       <AppHeader leftComponent={<BurgerBTN />} centerComponent={<Title />} />
       <View style={main}>
-        <FlatList
-          ListHeaderComponent={
-            <>
-              <Text style={greeting}>{generateGreeting()}</Text>
-              <CashCard />
-            </>
-          }
-          data={data}
-          keyExtractor={item => item.id}
-          renderItem={renderItem}
-          showsVerticalScrollIndicator={false}
-        />
+        <OffsetYProvider
+          columnsPerRow={1}
+          listItemHeight={boxHeight}
+          centerYStart={(windowHeight * 1) / 3}
+          centerYEnd={(windowHeight * 2) / 3}
+          contentOffset={450}>
+          {({setOffsetY}: any) => (
+            <FlatList
+              ListHeaderComponent={
+                <>
+                  <Text style={greeting}>{generateGreeting()}</Text>
+                  <CashCard />
+                </>
+              }
+              data={data}
+              keyExtractor={item => item.id}
+              renderItem={renderItem}
+              showsVerticalScrollIndicator={false}
+              onScroll={ev => {
+                setOffsetY(ev.nativeEvent.contentOffset.y);
+              }}
+            />
+          )}
+        </OffsetYProvider>
       </View>
     </View>
   );
