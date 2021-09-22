@@ -27,8 +27,8 @@ export const CashCardItem: FC<IItem> = ({
   const {
     containerStyle,
     itemStyle,
-    contentStyle,
     leftContentStyle,
+    rightContentStyle,
     titleStyle,
     iconStyle,
     subTitleStyle,
@@ -38,22 +38,22 @@ export const CashCardItem: FC<IItem> = ({
   return (
     <ListItem containerStyle={containerStyle}>
       <ListItem.Content style={itemStyle}>
-        <View style={contentStyle}>
-          <View style={leftContentStyle}>
-            <ListItem.Title style={titleStyle}>
-              {title}
-              {titleIcon && <Image source={titleIcon} style={iconStyle} />}
-            </ListItem.Title>
-            <ListItem.Subtitle style={subTitleStyle}>
-              {subTitle}
-            </ListItem.Subtitle>
-          </View>
+        <View style={leftContentStyle}>
+          <ListItem.Title style={titleStyle}>
+            {title}
+            {titleIcon && <Image source={titleIcon} style={iconStyle} />}
+          </ListItem.Title>
+          <ListItem.Subtitle style={subTitleStyle}>
+            {subTitle}
+          </ListItem.Subtitle>
+        </View>
+        <View style={rightContentStyle}>
           <Text style={amountBigStyle}>
             ${getValue(amount, false)}.
             <Text style={amountSmallStyle}>{getValue(amount, true)}</Text>
           </Text>
+          <ListItem.Chevron size={24} color={colors.pink} />
         </View>
-        <ListItem.Chevron size={24} color={colors.pink} />
       </ListItem.Content>
     </ListItem>
   );
@@ -61,22 +61,21 @@ export const CashCardItem: FC<IItem> = ({
 
 const styles = StyleSheet.create({
   containerStyle: {
-    paddingTop: 10,
-    paddingBottom: 0,
+    paddingVertical: 10,
     paddingRight: 10,
+    borderRadius: 7,
   },
   itemStyle: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-  contentStyle: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    width: '90%',
   },
   leftContentStyle: {
     maxWidth: '65%',
+  },
+  rightContentStyle: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   titleStyle: {
     fontFamily: 'SFProRounded-Regular',

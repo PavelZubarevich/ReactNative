@@ -1,7 +1,9 @@
-import React, {FC, useState, useEffect} from 'react';
-import {StyleSheet, View, ScrollView, Text} from 'react-native';
+import React, {FC, useState, useEffect, useRef} from 'react';
+import {StyleSheet, View, ScrollView, Text, ListRenderItem} from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
+import {floor} from 'react-native-reanimated';
 import colors from '../colors/colors';
-import {BurgerBTN, Title, CashCard} from '../components';
+import {BurgerBTN, Title, CashCard, GoodnessCard} from '../components';
 import {AppHeader} from '../theme';
 
 enum months {
@@ -19,8 +21,38 @@ enum months {
   'Dec',
 }
 
+interface ICardProps {
+  id: string;
+  image: string;
+  video?: string;
+}
+
 export const Home: FC = () => {
   const [dayPart, setDayPart] = useState<string>('');
+  const [data, setData] = useState<Array<object>>([
+    {
+      id: '1',
+      image: require('../Assets/Images/rectangle2.png'),
+    },
+    {
+      id: '2',
+      image: require('../Assets/Images/rectangle.png'),
+      video:
+        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    },
+    {
+      id: '3',
+      image: require('../Assets/Images/rectangle2.png'),
+      video:
+        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    },
+    {
+      id: '4',
+      image: require('../Assets/Images/rectangle.png'),
+      video:
+        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    },
+  ]);
 
   useEffect(() => {
     const time = new Date().getHours();
@@ -41,15 +73,33 @@ export const Home: FC = () => {
     } ${date.getDate()}, ${date.getFullYear()}`;
   };
 
-  const {main, greeting} = styles;
+  const renderItem: ListRenderItem<ICardProps> = ({item}) => {
+    return <GoodnessCard imageSource={item.image} videoSource={item.video} />;
+  };
 
+  const onViewRef = React.useRef(({viewableItems, changed}) => {
+    console.log(viewableItems[0]);
+  });
+
+  const {main, greeting} = styles;
   return (
     <View>
       <AppHeader leftComponent={<BurgerBTN />} centerComponent={<Title />} />
-      <ScrollView contentContainerStyle={main}>
-        <Text style={greeting}>{generateGreeting()}</Text>
-        <CashCard />
-      </ScrollView>
+      <View style={main}>
+        <FlatList
+          ListHeaderComponent={
+            <>
+              <Text style={greeting}>{generateGreeting()}</Text>
+              <CashCard />
+            </>
+          }
+          data={data}
+          keyExtractor={item => item.id}
+          renderItem={renderItem}
+          showsVerticalScrollIndicator={false}
+          onViewableItemsChanged={onViewRef.current}
+        />
+      </View>
     </View>
   );
 };
@@ -57,8 +107,7 @@ export const Home: FC = () => {
 const styles = StyleSheet.create({
   main: {
     minHeight: '100%',
-    paddingTop: 10,
-    paddingBottom: 110,
+    paddingBottom: 190,
     paddingHorizontal: 15,
     backgroundColor: colors.light,
   },
@@ -66,5 +115,6 @@ const styles = StyleSheet.create({
     color: colors.grey,
     fontSize: 15,
     fontFamily: 'SFProRounded-Regular',
+    marginVertical: 10,
   },
 });

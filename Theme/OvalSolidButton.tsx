@@ -4,7 +4,7 @@ import {Button, IconNode} from 'react-native-elements';
 
 interface IOvalButton {
   title: string;
-  titleColor?: string;
+  titleStyle?: object;
   buttonColor?: string;
   icon?: IconNode;
   onPress?: () => void;
@@ -14,17 +14,17 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 export const OvalSolidButton: FC<IOvalButton> = ({
   title,
-  titleColor,
+  titleStyle,
   buttonColor,
   icon,
   onPress,
 }) => {
-  const {buttonStyle, titleStyle, containerStyle} = styles;
+  const {buttonStyle, defaultTitleStyle, containerStyle} = styles;
   return (
     <Button
       buttonStyle={[buttonStyle, {backgroundColor: buttonColor}]}
       title={title}
-      titleStyle={[titleStyle, {color: titleColor}]}
+      titleStyle={[defaultTitleStyle, titleStyle]}
       type={'solid'}
       onPress={onPress}
       containerStyle={containerStyle}
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 0,
   },
-  titleStyle: {
+  defaultTitleStyle: {
     fontSize: SCREEN_WIDTH > 576 ? 18 : 12,
     textTransform: 'uppercase',
     fontFamily: 'SFProRounded-Bold',
