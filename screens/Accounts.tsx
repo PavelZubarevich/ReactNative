@@ -2,11 +2,11 @@ import React, {FC} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 import {GoBackBTN, Title} from '../components';
-import {HomeScreenNavigationProp} from '../types/types';
+import {StackNavigationProp} from './SignedApp/constants';
 import {AppHeader} from '../theme';
 
 interface IAccounts {
-  navigation: HomeScreenNavigationProp;
+  navigation: StackNavigationProp;
 }
 
 export const Accounts: FC<IAccounts> = ({navigation}) => {

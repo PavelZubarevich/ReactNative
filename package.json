@@ -23,6 +23,7 @@
     "react-native-codegen": "^0.0.7",
     "react-native-elements": "^2.3.2",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-pure-jwt": "^2.2.2",
     "react-native-reanimated": "^1.13.3",
     "react-native-safe-area-context": "^3.3.0",
     "react-native-screens": "^3.6.0",
