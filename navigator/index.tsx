@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect, ConnectedProps} from 'react-redux';
 import {SignedApp} from '../screens';
-import {SignIn} from '../screens/SignInScreen';
+import SignIn from '../screens/SignInScreen';
 import {connectAuthState} from '../Redux/types';
 
 const Navigator = (props: Props) => {
