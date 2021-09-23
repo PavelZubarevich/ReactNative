@@ -9,7 +9,7 @@ interface ITitle {
   subTitle?: string;
 }
 
-const width = Dimensions.get('window').width;
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 export const Title: FC<ITitle> = ({title, subTitle}) => {
   const {main, image, titleStyle, subTitleStyle} = styles;
@@ -40,16 +40,16 @@ const styles = StyleSheet.create({
   },
   image: {
     marginTop: 5,
-    width: width > 576 ? 200 : 100,
-    height: width > 576 ? 80 : 50,
+    width: SCREEN_WIDTH > 576 ? 200 : 100,
+    height: SCREEN_WIDTH > 576 ? 80 : 50,
   },
   titleStyle: {
     marginTop: 5,
     color: '#fff',
-    fontSize: width > 576 ? 28 : 18,
+    fontSize: SCREEN_WIDTH > 576 ? 28 : 18,
   },
   subTitleStyle: {
     color: '#fff',
-    fontSize: width > 576 ? 16 : 10,
+    fontSize: SCREEN_WIDTH > 576 ? 16 : 10,
   },
 });

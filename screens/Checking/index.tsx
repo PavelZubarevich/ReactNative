@@ -1,26 +1,22 @@
 import React, {FC} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {GoBackBTN, Title} from '../components';
-import {CheckingScreenRouteProp} from '../types/types';
-import {AppHeader} from '../theme/index';
+import {GoBackBTN, Title} from '../../components';
+import {CheckingScreenRouteProp} from './constants';
+import {AppHeader} from '../../theme/index';
 
 interface ICheckung {
   route: CheckingScreenRouteProp;
 }
 
 export const Checking: FC<ICheckung> = ({route}) => {
-  //==================================================================
-  let subTitle: any = null;
-  if (route.params) {
-    subTitle = route.params.subTitle;
-  }
-  //====================================================================
   const {main, content} = styles;
   return (
     <View style={main}>
       <AppHeader
         leftComponent={<GoBackBTN />}
-        centerComponent={<Title title={'Checking'} subTitle={subTitle} />}
+        centerComponent={
+          <Title title={'Checking'} subTitle={route.params?.subTitle} />
+        }
       />
       <View style={content}>
         <Text>Comming soon</Text>

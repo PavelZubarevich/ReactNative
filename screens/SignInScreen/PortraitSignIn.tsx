@@ -16,6 +16,7 @@ import {connect, ConnectedProps} from 'react-redux';
 import {logIn, logInErr} from '../../redux/actionCreators/actionCreators';
 import {connectErrState} from '../../redux/types';
 import {CustomInput, OvalSolidButton, TextButton} from '../../theme';
+import jwt from 'react-native-pure-jwt';
 
 const SignIn = (props: Props) => {
   const [email, setEmail] = useState<string>('');
@@ -30,16 +31,27 @@ const SignIn = (props: Props) => {
           /^[A-Za-z]+@itechart-group.com/.test(email) &&
           password === 'admin'
         ) {
-          const jwt: string = '11';
-          resolve(jwt);
+          resolve(
+            jwt.sign(
+              {
+                iss: email,
+                exp: new Date().getTime() + 3600 * 1000,
+                name: 'Danny',
+              },
+              'my-secret',
+              {
+                alg: 'HS256',
+              },
+            ),
+          );
         } else {
           reject();
         }
       }, 1000);
     });
     signInPromise
-      .then(jwt => {
-        props.login(jwt);
+      .then(token => {
+        props.login(token);
       })
       .catch(() => {
         props.loginErr();
@@ -197,7 +209,7 @@ const styles = StyleSheet.create({
 
 const mapState = (state: connectErrState) => ({authErr: state.auth.error});
 const mapDispatch = {
-  login: (jwt: string) => logIn(jwt),
+  login: (token: string) => logIn(token),
   loginErr: () => logInErr(),
 };
 
