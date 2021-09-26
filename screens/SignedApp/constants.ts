@@ -1,13 +1,13 @@
 import {ComponentType} from 'react';
-import {HomeTabs, Checking, Saving} from '../';
+import {HomeTabs, Checking, Saving, FullScreenVideo} from '../';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 export type StackParams = {
-  SignIn: undefined;
   HomeTabs: undefined;
   Checking: {subTitle: string} | undefined;
   Saving: {subTitle: string} | undefined;
+  FullScreenVideo: {videoSource: string} | undefined;
 };
 
 export type StackProps = NativeStackScreenProps<StackParams>;
@@ -30,6 +30,10 @@ export const screens: Array<IScreen> = [
   {
     name: 'Saving',
     component: Saving,
+  },
+  {
+    name: 'FullScreenVideo',
+    component: FullScreenVideo,
   },
 ];
 

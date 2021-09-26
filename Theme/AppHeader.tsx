@@ -26,6 +26,7 @@ export const AppHeader: FC<IHeader> = ({leftComponent, centerComponent}) => {
 };
 const styles = StyleSheet.create({
   header: {
+    paddingHorizontal: 15,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.pink,

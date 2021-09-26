@@ -1,5 +1,5 @@
-import React, {FC} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import React, {FC, useState} from 'react';
+import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {Card, Image} from 'react-native-elements';
 import colors from '../colors/colors';
 import {OvalSolidButton} from '../theme';
@@ -7,6 +7,8 @@ import Icon from 'react-native-vector-icons/Entypo';
 import {ImageSource} from 'react-native-vector-icons/Icon';
 import Video from 'react-native-video';
 import {InCenterConsumer} from '@n1ru4l/react-in-center-of-screen';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '../screens/SignedApp/constants';
 
 interface ICard {
   imageSource: ImageSource;
@@ -14,6 +16,10 @@ interface ICard {
 }
 
 export const GoodnessCard: FC<ICard> = ({imageSource, videoSource}) => {
+  const [isMuted, setMuted] = useState<boolean>(true);
+
+  const navigation = useNavigation<StackNavigationProp>();
+
   const {
     containerStyle,
     headerStyle,
@@ -21,6 +27,7 @@ export const GoodnessCard: FC<ICard> = ({imageSource, videoSource}) => {
     titleBlock,
     titleStyle,
     subTitleStyle,
+    muteImageStyle,
     imageStyle,
     textStyle,
     btnStyle,
@@ -45,19 +52,37 @@ export const GoodnessCard: FC<ICard> = ({imageSource, videoSource}) => {
               </Text>
             </View>
           </View>
-          {isInCenter && videoSource ? (
-            <Video
-              source={{
-                uri: `${videoSource}`,
-              }}
-              controls={false}
-              style={imageStyle}
-              resizeMode="cover"
-            />
-          ) : (
-            <Card.Image source={imageSource} style={imageStyle} />
-          )}
-
+          <TouchableOpacity
+            onPress={() =>
+              videoSource &&
+              navigation.navigate('FullScreenVideo', {videoSource})
+            }>
+            <View>
+              {isInCenter && videoSource ? (
+                <Video
+                  source={{
+                    uri: `${videoSource}`,
+                  }}
+                  controls={false}
+                  style={imageStyle}
+                  resizeMode="cover"
+                  muted={isMuted}
+                />
+              ) : (
+                <Card.Image source={imageSource} style={imageStyle} />
+              )}
+              {videoSource && (
+                <TouchableOpacity
+                  style={muteImageStyle}
+                  onPress={() => setMuted(!isMuted)}>
+                  <Image
+                    source={require('../Assets/Images/play.png')}
+                    style={{width: '100%', height: '100%'}}
+                  />
+                </TouchableOpacity>
+              )}
+            </View>
+          </TouchableOpacity>
           <Text style={textStyle}>
             Danny, Your donation helped 5 amazing kids get much needed cancer
             surgery, thanks for being amazing!
@@ -118,6 +143,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 14,
     color: colors.grey,
+  },
+  muteImageStyle: {
+    width: 30,
+    height: 30,
+    position: 'absolute',
+    bottom: 23,
+    right: 15,
   },
   imageStyle: {
     height: 170,

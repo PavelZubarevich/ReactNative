@@ -9,3 +9,5 @@ declare module '@n1ru4l/react-in-center-of-screen' {
   const InCenterConsumer: any;
   export {OffsetYProvider, InCenterConsumer, IndexProvider};
 }
+
+declare module 'react-native-video-controls';

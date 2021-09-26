@@ -4,7 +4,7 @@ import {Card} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/core';
 import {CashCardItem, CashHeader} from '.';
 import colors from '../colors/colors';
-import {StackNavigationProp} from '../types/types';
+import {StackNavigationProp} from '../screens/SignedApp/constants';
 
 export const CashCard: FC = () => {
   const navigation = useNavigation<StackNavigationProp>();
