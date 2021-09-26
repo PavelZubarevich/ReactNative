@@ -6,21 +6,17 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   Text,
-  Dimensions,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
-import {logOut} from '../redux/actionCreators/actionCreators';
-import colors from '../colors/colors';
+import {logOut} from '../../redux/actionCreators/actionCreators';
+import colors from '../../colors/colors';
+import {IModal, SCREEN_WIDTH} from './constants';
+import {useNavigation} from '@react-navigation/core';
+import {StackNavigationProp} from '../../screens/SignedApp/constants';
 
-interface IModal {
-  showModal: boolean;
-  modalHandler: () => void;
-}
-
-const SCREEN_WIDTH = Dimensions.get('window').width;
-
-export const LogOutModal: FC<IModal> = ({showModal, modalHandler}) => {
+export const AvatarModal: FC<IModal> = ({showModal, modalHandler}) => {
   const dispatch = useDispatch();
+  const navigation = useNavigation<StackNavigationProp>();
 
   const {background, modal, textStyle, divider} = styles;
   return (
@@ -29,7 +25,7 @@ export const LogOutModal: FC<IModal> = ({showModal, modalHandler}) => {
         <View style={background} />
       </TouchableWithoutFeedback>
       <View style={modal}>
-        <TouchableOpacity onPress={() => console.log('prof')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <Text style={textStyle}>Profile</Text>
         </TouchableOpacity>
         <View style={divider} />
