@@ -1,4 +1,4 @@
-import {ICardProps} from './types';
+import {Dimensions} from 'react-native';
 
 export enum months {
   'Jan',
@@ -14,6 +14,16 @@ export enum months {
   'Nov',
   'Dec',
 }
+
+export interface ICardProps {
+  id: string;
+  image: string;
+  video?: string;
+}
+
+export const {height: windowHeight} = Dimensions.get('window');
+
+export const boxHeight = windowHeight / 2;
 
 export const data: Array<ICardProps> = [
   {

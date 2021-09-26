@@ -1,19 +1,14 @@
 import React, {FC, useState, useEffect} from 'react';
-import {StyleSheet, View, Text, ListRenderItem, Dimensions} from 'react-native';
+import {StyleSheet, View, Text, ListRenderItem} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import colors from '../../colors/colors';
 import {BurgerBTN, Title, CashCard, GoodnessCard} from '../../components';
 import {AppHeader} from '../../theme';
-import {data, months} from './constants';
-import {ICardProps} from './types';
+import {data, months, windowHeight, boxHeight, ICardProps} from './constants';
 import {
   OffsetYProvider,
   IndexProvider,
 } from '@n1ru4l/react-in-center-of-screen';
-
-const {height: windowHeight} = Dimensions.get('window');
-
-const boxHeight = windowHeight / 2;
 
 export const Home: FC = () => {
   const [dayPart, setDayPart] = useState<string>('');
@@ -66,8 +61,8 @@ export const Home: FC = () => {
               keyExtractor={item => item.id}
               renderItem={renderItem}
               showsVerticalScrollIndicator={false}
-              onScroll={ev => {
-                setOffsetY(ev.nativeEvent.contentOffset.y);
+              onScroll={event => {
+                setOffsetY(event.nativeEvent.contentOffset.y);
               }}
             />
           )}
