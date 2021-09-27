@@ -1,5 +1,5 @@
-import {StackNavigationProp} from '../SignedApp/constants';
+import {Dimensions} from 'react-native';
 
-export interface IProfile {
-  navigation: StackNavigationProp;
-}
+export interface IProfile {}
+
+export const SCREEN_WIDTH = Dimensions.get('window').width;

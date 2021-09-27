@@ -1,12 +1,13 @@
 import React, {FC} from 'react';
-import {StyleSheet, Dimensions} from 'react-native';
-import {Button, IconNode} from 'react-native-elements';
+import {StyleSheet, Dimensions, ViewStyle, TextStyle} from 'react-native';
+import {Button} from 'react-native-elements';
 
 interface IOvalButton {
   title: string;
-  titleStyle?: object;
+  titleStyle?: TextStyle;
   buttonColor?: string;
-  icon?: IconNode;
+  containerStyle?: ViewStyle;
+  icon?: any;
   onPress?: () => void;
 }
 
@@ -16,27 +17,28 @@ export const OvalSolidButton: FC<IOvalButton> = ({
   title,
   titleStyle,
   buttonColor,
+  containerStyle,
   icon,
   onPress,
 }) => {
-  const {buttonStyle, defaultTitleStyle, containerStyle} = styles;
+  const {defaultButtonStyle, defaultTitleStyle, defaultContainerStyle} = styles;
   return (
     <Button
-      buttonStyle={[buttonStyle, {backgroundColor: buttonColor}]}
+      buttonStyle={[defaultButtonStyle, {backgroundColor: buttonColor}]}
       title={title}
       titleStyle={[defaultTitleStyle, titleStyle]}
       type={'solid'}
       onPress={onPress}
-      containerStyle={containerStyle}
+      containerStyle={[defaultContainerStyle, containerStyle]}
       icon={icon}
     />
   );
 };
 const styles = StyleSheet.create({
-  containerStyle: {
+  defaultContainerStyle: {
     borderRadius: 20,
   },
-  buttonStyle: {
+  defaultButtonStyle: {
     borderRadius: 20,
     height: SCREEN_WIDTH > 576 ? 50 : 40,
     justifyContent: 'center',
