@@ -1,9 +1,9 @@
-import {actionsTypes} from '../types';
+import {actionsTypes} from '../types/signIn';
 
 export const logOut = () => {
   return {type: actionsTypes.LOGOUT};
 };
-export const logIn = jwt => {
+export const logIn = (jwt: string) => {
   return {type: actionsTypes.LOGIN, jwt};
 };
 export const logInErr = () => {

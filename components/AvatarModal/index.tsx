@@ -8,7 +8,7 @@ import {
   Text,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
-import {logOut} from '../../redux/actionCreators/actionCreators';
+import {logOut} from '../../redux/actionCreators/signInActionCreators';
 import colors from '../../colors/colors';
 import {IModal, SCREEN_WIDTH} from './constants';
 import {useNavigation} from '@react-navigation/core';

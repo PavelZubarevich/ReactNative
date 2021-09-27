@@ -10,12 +10,27 @@ import {
 import {Avatar, Icon} from 'react-native-elements';
 import {GoBackBTN, Title} from '../../components';
 import {AppHeader, CustomInput, OvalSolidButton} from '../../theme';
-import {IProfile, SCREEN_WIDTH} from './constants';
+import {SCREEN_WIDTH, connector, Props} from './constants';
 import colors from '../../colors/colors';
 import DatePicker from 'react-native-date-picker';
+import dateFormat from 'dateformat';
 
-export const Profile: FC<IProfile> = () => {
+const Profile: FC<Props> = props => {
   const [editMode, setMode] = useState<boolean>(false);
+  const [fullName, setFullName] = useState<string>(props.name);
+  const [dateString, setDate] = useState<string>(props.birth);
+
+  const cancelHandler = () => {
+    setDate(props.birth);
+    setFullName(props.name);
+    setMode(false);
+  };
+  const applyHandler = () => {
+    props.changeBirth(dateString);
+    props.changeFullName(fullName);
+    setMode(false);
+  };
+
   const {
     main,
     contentStyle,
@@ -46,7 +61,7 @@ export const Profile: FC<IProfile> = () => {
             <View style={avatarBlock}>
               <Avatar
                 rounded
-                source={require('../../Assets/Images/oval.png')}
+                source={props.avatar}
                 size="xlarge"
                 avatarStyle={avatarStyle}
               />
@@ -57,7 +72,7 @@ export const Profile: FC<IProfile> = () => {
                 color={colors.pink}
                 size={22}
                 containerStyle={cameraBTNStyle}
-                onPress={() => console.log('fdkij')}
+                onPress={() => console.log('dflk')}
               />
               <Icon
                 reverse
@@ -72,25 +87,29 @@ export const Profile: FC<IProfile> = () => {
             <View style={fieldsBlock}>
               <CustomInput
                 label="Full name"
-                value="Name"
+                value={fullName}
                 disabled={!editMode}
+                onChangeText={text => setFullName(() => text)}
               />
               {editMode ? (
                 <>
                   <Text style={titleStyle}>Date Of Birh</Text>
                   <DatePicker
-                    date={new Date()}
-                    onDateChange={() => console.log('change')}
+                    date={new Date(dateString)}
+                    onDateChange={(date: Date) =>
+                      setDate(() => dateFormat(date, 'mmmm d, yyyy'))
+                    }
                     style={{backgroundColor: colors.light}}
                     fadeToColor="none"
                     maximumDate={new Date()}
                     mode="date"
+                    timeZoneOffsetInMinutes={500}
                   />
                 </>
               ) : (
                 <CustomInput
                   label="Date Of Birh"
-                  value="march 21, 1996"
+                  value={props.birth}
                   disabled
                 />
               )}
@@ -110,12 +129,13 @@ export const Profile: FC<IProfile> = () => {
                   title="cancel"
                   buttonColor={colors.pink}
                   containerStyle={twoButtonStyle}
-                  onPress={() => setMode(false)}
+                  onPress={() => cancelHandler()}
                 />
                 <OvalSolidButton
                   title="apply updates"
                   buttonColor={colors.pink}
                   containerStyle={twoButtonStyle}
+                  onPress={() => applyHandler()}
                 />
               </>
             )}
@@ -173,3 +193,5 @@ const styles = StyleSheet.create({
     width: '45%',
   },
 });
+
+export default connector(Profile);

@@ -8,4 +8,3 @@ export {Saving} from './Saving';
 export {HomeTabs} from './HomeTabs';
 export {SignedApp} from './SignedApp';
 export {FullScreenVideo} from './FullScreenVideo';
-export {Profile} from './Profile';

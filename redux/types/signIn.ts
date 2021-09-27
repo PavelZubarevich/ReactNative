@@ -19,7 +19,7 @@ interface ILogInErrClear {
   type: actionsTypes.LOGIN_ERR_CLEAR;
 }
 
-export type actions = ILogIn | ILogOut | ILogInErr | ILogInErrClear;
+export type authActions = ILogIn | ILogOut | ILogInErr | ILogInErrClear;
 
 export interface authState {
   jwt: string;

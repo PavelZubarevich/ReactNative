@@ -1,7 +1,7 @@
 import {Dimensions} from 'react-native';
 import {connect, ConnectedProps} from 'react-redux';
-import {logIn, logInErr} from '../../redux/actionCreators/actionCreators';
-import {connectErrState} from '../../redux/types';
+import {logIn, logInErr} from '../../redux/actionCreators/signInActionCreators';
+import {connectErrState} from '../../redux/types/signIn';
 
 export const SCREEN_WIDTH = Dimensions.get('window').width;
 

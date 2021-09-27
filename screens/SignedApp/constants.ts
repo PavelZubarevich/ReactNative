@@ -1,5 +1,6 @@
 import {ComponentType} from 'react';
-import {HomeTabs, Checking, Saving, FullScreenVideo, Profile} from '../';
+import {HomeTabs, Checking, Saving, FullScreenVideo} from '../';
+import Profile from '../Profile';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
