@@ -10,25 +10,59 @@ import {
 import {Avatar, Icon} from 'react-native-elements';
 import {GoBackBTN, Title} from '../../components';
 import {AppHeader, CustomInput, OvalSolidButton} from '../../theme';
-import {SCREEN_WIDTH, connector, Props} from './constants';
+import {SCREEN_WIDTH, connector, Props, cameraOptions} from './constants';
 import colors from '../../colors/colors';
 import DatePicker from 'react-native-date-picker';
 import dateFormat from 'dateformat';
+import {launchImageLibrary} from 'react-native-image-picker';
+import {useNavigation} from '@react-navigation/core';
+import {StackNavigationProp} from '../SignedApp/constants';
 
-const Profile: FC<Props> = props => {
+const Profile: FC<Props> = ({
+  name,
+  birth,
+  avatarSource,
+  changeAvatar,
+  changeBirth,
+  changeFullName,
+}) => {
   const [editMode, setMode] = useState<boolean>(false);
-  const [fullName, setFullName] = useState<string>(props.name);
-  const [dateString, setDate] = useState<string>(props.birth);
+  const [fullName, setFullName] = useState<string>(name);
+  const [dateString, setDate] = useState<string>(birth);
+  const [avatar, setAvatar] = useState<string>(avatarSource);
+
+  const navigation = useNavigation<StackNavigationProp>();
 
   const cancelHandler = () => {
-    setDate(props.birth);
-    setFullName(props.name);
+    setAvatar(avatarSource);
+    setDate(birth);
+    setFullName(name);
     setMode(false);
   };
   const applyHandler = () => {
-    props.changeBirth(dateString);
-    props.changeFullName(fullName);
+    changeAvatar(avatar);
+    changeBirth(dateString);
+    changeFullName(fullName);
     setMode(false);
+  };
+
+  const takePhoto = (uri: string) => {
+    setAvatar(uri);
+  };
+  // const launchCameraHandler = () => {
+  //   launchCamera(cameraOptions, response => {
+  //     if (!response.didCancel && !response.errorCode?.length) {
+  //       setAvatar(response.assets[0].uri);
+  //     }
+  //   });
+  // };
+
+  const launchImageLibraryHandler = () => {
+    launchImageLibrary(cameraOptions, response => {
+      if (!response.didCancel && !response.errorCode?.length) {
+        setAvatar(response.assets[0].uri);
+      }
+    });
   };
 
   const {
@@ -61,28 +95,35 @@ const Profile: FC<Props> = props => {
             <View style={avatarBlock}>
               <Avatar
                 rounded
-                source={props.avatar}
+                source={{
+                  uri: avatar,
+                }}
                 size="xlarge"
                 avatarStyle={avatarStyle}
               />
-              <Icon
-                reverse
-                name="add-a-photo"
-                type="material"
-                color={colors.pink}
-                size={22}
-                containerStyle={cameraBTNStyle}
-                onPress={() => console.log('dflk')}
-              />
-              <Icon
-                reverse
-                name="add-photo-alternate"
-                type="material"
-                color={colors.pink}
-                size={22}
-                containerStyle={addPhotoStyle}
-                onPress={() => console.log('fdkij')}
-              />
+              {editMode && (
+                <>
+                  <Icon
+                    reverse
+                    name="add-a-photo"
+                    type="material"
+                    color={colors.pink}
+                    size={22}
+                    containerStyle={cameraBTNStyle}
+                    // onPress={() => launchCameraHandler()}
+                    onPress={() => navigation.navigate('Camera', {takePhoto})}
+                  />
+                  <Icon
+                    reverse
+                    name="add-photo-alternate"
+                    type="material"
+                    color={colors.pink}
+                    size={22}
+                    containerStyle={addPhotoStyle}
+                    onPress={() => launchImageLibraryHandler()}
+                  />
+                </>
+              )}
             </View>
             <View style={fieldsBlock}>
               <CustomInput
@@ -107,11 +148,7 @@ const Profile: FC<Props> = props => {
                   />
                 </>
               ) : (
-                <CustomInput
-                  label="Date Of Birh"
-                  value={props.birth}
-                  disabled
-                />
+                <CustomInput label="Date Of Birh" value={birth} disabled />
               )}
             </View>
           </View>
@@ -153,6 +190,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: SCREEN_WIDTH > 576 ? '15%' : 15,
     paddingTop: 20,
     paddingBottom: 30,
+    minHeight: 600,
   },
   contentStyle: {
     alignItems: 'center',

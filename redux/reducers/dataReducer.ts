@@ -1,9 +1,12 @@
+import {Image} from 'react-native';
 import {actionsTypes, dataState, dataActions} from '../types/data';
 
 const initialState: dataState = {
   fullName: 'Danny',
   birth: 'march 21, 1996',
-  avatarSource: require('../../Assets/Images/oval.png'),
+  avatarSource: Image.resolveAssetSource(
+    require('../../Assets/Images/oval.png'),
+  ).uri,
 };
 
 export function dataReducer(state = initialState, action: dataActions) {

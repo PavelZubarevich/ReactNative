@@ -1,5 +1,3 @@
-import {ImageSourcePropType} from 'react-native';
-
 export enum actionsTypes {
   CHANGE_NAME = 'CHANGE_NAME',
   CHANGE_BIRTH = 'CHANGE_BIRTH',
@@ -9,7 +7,7 @@ export enum actionsTypes {
 export interface dataState {
   fullName: string;
   birth: string;
-  avatarSource: ImageSourcePropType;
+  avatarSource: string;
 }
 
 interface IChangeName {
@@ -31,6 +29,6 @@ export interface connectDataState {
   data: {
     fullName: string;
     birth: string;
-    avatarSource: ImageSourcePropType;
+    avatarSource: string;
   };
 }
