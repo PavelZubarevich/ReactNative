@@ -21,7 +21,7 @@ export interface ICardProps {
   video?: string;
 }
 
-export const {height: windowHeight} = Dimensions.get('window');
+export const {height: windowHeight, width: SCREEN_WIDTH} = Dimensions.get('window');
 
 export const boxHeight = windowHeight / 2;
 

@@ -1,5 +1,5 @@
 import React, {FC, useState} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, Dimensions} from 'react-native';
 import {Card, Image} from 'react-native-elements';
 import colors from '../colors/colors';
 import {OvalSolidButton} from '../theme';
@@ -9,6 +9,8 @@ import Video from 'react-native-video';
 import {InCenterConsumer} from '@n1ru4l/react-in-center-of-screen';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '../screens/SignedApp/constants';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 interface ICard {
   imageSource: ImageSource;
@@ -53,6 +55,7 @@ export const GoodnessCard: FC<ICard> = ({imageSource, videoSource}) => {
             </View>
           </View>
           <TouchableOpacity
+            disabled={!videoSource}
             onPress={() =>
               videoSource &&
               navigation.navigate('FullScreenVideo', {videoSource})
@@ -152,7 +155,7 @@ const styles = StyleSheet.create({
     right: 15,
   },
   imageStyle: {
-    height: 170,
+    height: SCREEN_WIDTH > 576 ? 270 : 170,
     marginBottom: 10,
   },
   textStyle: {

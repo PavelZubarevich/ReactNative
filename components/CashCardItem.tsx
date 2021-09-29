@@ -1,11 +1,12 @@
 import React, {FC} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {ListItem, Image} from 'react-native-elements';
+import {ListItem, Image, ImageProps} from 'react-native-elements';
 import colors from '../colors/colors';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 interface IItem {
   title: string;
-  titleIcon?: string;
+  titleIcon?: ImageProps;
   subTitle: string;
   amount: string;
 }
@@ -52,7 +53,7 @@ export const CashCardItem: FC<IItem> = ({
             ${getValue(amount, false)}.
             <Text style={amountSmallStyle}>{getValue(amount, true)}</Text>
           </Text>
-          <ListItem.Chevron size={24} color={colors.pink} />
+          <Icon name="chevron-right" size={24} color={colors.pink} />
         </View>
       </ListItem.Content>
     </ListItem>

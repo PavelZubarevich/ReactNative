@@ -23,7 +23,8 @@ export const FullScreenVideo: FC<IVideo> = ({route, navigation}) => {
       <StatusBar backgroundColor={'#000'} hidden={!showStatusBar} />
       <VideoPlayer
         source={{
-          uri: `${route.params?.videoSource}`,
+          uri: `http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4`,
+          type: 'mp4'
         }}
         style={videoStyle}
         navigator={navigation}
