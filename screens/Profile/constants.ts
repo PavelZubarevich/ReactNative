@@ -6,7 +6,6 @@ import {
   changeAvatar,
 } from '../../redux/actionCreators/dataActionCreators';
 import {connectDataState} from '../../redux/types/data';
-import {CameraOptions} from 'react-native-image-picker';
 
 export const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -24,10 +23,6 @@ export enum months {
   'November',
   'December',
 }
-
-export const cameraOptions: CameraOptions = {
-  mediaType: 'photo',
-};
 
 const mapState = (state: connectDataState) => ({
   name: state.data.fullName,

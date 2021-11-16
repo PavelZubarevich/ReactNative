@@ -10,13 +10,13 @@ import {
 import {Avatar, Icon} from 'react-native-elements';
 import {GoBackBTN, Title} from '../../components';
 import {AppHeader, CustomInput, OvalSolidButton} from '../../theme';
-import {SCREEN_WIDTH, connector, Props, cameraOptions} from './constants';
+import {SCREEN_WIDTH, connector, Props} from './constants';
 import colors from '../../colors/colors';
 import DatePicker from 'react-native-date-picker';
 import dateFormat from 'dateformat';
-import {launchImageLibrary} from 'react-native-image-picker';
 import {useNavigation} from '@react-navigation/core';
 import {StackNavigationProp} from '../SignedApp/constants';
+import ImagePicker from 'react-native-image-crop-picker';
 
 const Profile: FC<Props> = ({
   name,
@@ -49,19 +49,14 @@ const Profile: FC<Props> = ({
   const takePhoto = (uri: string) => {
     setAvatar(uri);
   };
-  // const launchCameraHandler = () => {
-  //   launchCamera(cameraOptions, response => {
-  //     if (!response.didCancel && !response.errorCode?.length) {
-  //       setAvatar(response.assets[0].uri);
-  //     }
-  //   });
-  // };
 
   const launchImageLibraryHandler = () => {
-    launchImageLibrary(cameraOptions, response => {
-      if (!response.didCancel && !response.errorCode?.length) {
-        setAvatar(response.assets[0].uri);
-      }
+    ImagePicker.openPicker({
+      width: 500,
+      height: 500,
+      cropping: true,
+    }).then(image => {
+      setAvatar(image.path);
     });
   };
 

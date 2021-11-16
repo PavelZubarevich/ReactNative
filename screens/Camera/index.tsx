@@ -10,8 +10,11 @@ export const Camera: FC<ICamera> = ({route, navigation}) => {
   const [{cameraRef}, {takePicture}] = useCamera();
 
   const photoHandler = async () => {
+    console.log(1);
     try {
+      console.log(2);
       const data = await takePicture();
+      console.log(3);
       await route.params?.takePhoto(data.uri);
       navigation.goBack();
     } catch (e) {
