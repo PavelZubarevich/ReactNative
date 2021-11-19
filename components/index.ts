@@ -7,3 +7,4 @@ export {CashHeader} from './CashHeader';
 export {CashCard} from './CashCard';
 export {CashCardItem} from './CashCardItem';
 export {GoodnessCard} from './GoodnessCard';
+export {IconButton} from './IconButton';

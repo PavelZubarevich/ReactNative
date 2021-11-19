@@ -1,13 +1,15 @@
 import React, {FC} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, ImageSourcePropType} from 'react-native';
 import {ListItem, Image} from 'react-native-elements';
 import colors from '../colors/colors';
 
 interface IItem {
   title: string;
-  titleIcon?: string;
+  titleIcon?: ImageSourcePropType;
   subTitle: string;
+  info?: string;
   amount: string;
+  isBig?: boolean;
 }
 
 const getValue = (num: string, float: boolean): string => {
@@ -22,7 +24,9 @@ export const CashCardItem: FC<IItem> = ({
   title,
   titleIcon,
   subTitle,
+  info,
   amount,
+  isBig,
 }) => {
   const {
     containerStyle,
@@ -34,26 +38,30 @@ export const CashCardItem: FC<IItem> = ({
     subTitleStyle,
     amountBigStyle,
     amountSmallStyle,
+    infoTextStyle,
   } = styles;
   return (
-    <ListItem containerStyle={containerStyle}>
-      <ListItem.Content style={itemStyle}>
-        <View style={leftContentStyle}>
-          <ListItem.Title style={titleStyle}>
-            {title}
-            {titleIcon && <Image source={titleIcon} style={iconStyle} />}
-          </ListItem.Title>
-          <ListItem.Subtitle style={subTitleStyle}>
-            {subTitle}
-          </ListItem.Subtitle>
+    <ListItem containerStyle={[containerStyle, isBig && {height: 100}]}>
+      <ListItem.Content>
+        <View style={itemStyle}>
+          <View style={leftContentStyle}>
+            <ListItem.Title style={titleStyle}>
+              {title}
+              {titleIcon && <Image source={titleIcon} style={iconStyle} />}
+            </ListItem.Title>
+            <ListItem.Subtitle style={subTitleStyle}>
+              {subTitle}
+            </ListItem.Subtitle>
+          </View>
+          <View style={rightContentStyle}>
+            <Text style={amountBigStyle}>
+              ${getValue(amount, false)}.
+              <Text style={amountSmallStyle}>{getValue(amount, true)}</Text>
+            </Text>
+            <ListItem.Chevron size={24} color={colors.pink} />
+          </View>
         </View>
-        <View style={rightContentStyle}>
-          <Text style={amountBigStyle}>
-            ${getValue(amount, false)}.
-            <Text style={amountSmallStyle}>{getValue(amount, true)}</Text>
-          </Text>
-          <ListItem.Chevron size={24} color={colors.pink} />
-        </View>
+        {info && <Text style={infoTextStyle}>{info}</Text>}
       </ListItem.Content>
     </ListItem>
   );
@@ -66,6 +74,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
   },
   itemStyle: {
+    width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -106,5 +115,11 @@ const styles = StyleSheet.create({
     fontFamily: 'SFProRounded-Regular',
     fontSize: 17,
     color: colors.darkGrey,
+  },
+  infoTextStyle: {
+    fontSize: 16,
+    marginTop: 10,
+    alignSelf: 'center',
+    color: colors.green,
   },
 });
