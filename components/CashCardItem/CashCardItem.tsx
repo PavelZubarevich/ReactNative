@@ -1,7 +1,8 @@
 import React, {FC} from 'react';
-import {StyleSheet, Text, View, ImageSourcePropType} from 'react-native';
-import {ListItem, Image} from 'react-native-elements';
-import colors from '../colors/colors';
+import {StyleSheet, Text, View, ImageSourcePropType, Image} from 'react-native';
+import {ListItem} from 'react-native-elements';
+import colors from '../../colors/colors';
+import {CardTypes} from './constants';
 
 interface IItem {
   title: string;
@@ -9,7 +10,9 @@ interface IItem {
   subTitle: string;
   info?: string;
   amount: string;
-  isBig?: boolean;
+  chevron?: boolean;
+  type?: string;
+  special?: string;
 }
 
 const getValue = (num: string, float: boolean): string => {
@@ -26,7 +29,9 @@ export const CashCardItem: FC<IItem> = ({
   subTitle,
   info,
   amount,
-  isBig,
+  chevron = true,
+  type = 'home',
+  special,
 }) => {
   const {
     containerStyle,
@@ -39,28 +44,47 @@ export const CashCardItem: FC<IItem> = ({
     amountBigStyle,
     amountSmallStyle,
     infoTextStyle,
+    specialGreen,
+    specialIcon,
+    itemContainer,
   } = styles;
   return (
-    <ListItem containerStyle={[containerStyle, isBig && {height: 100}]}>
+    <ListItem
+      containerStyle={[
+        containerStyle,
+        type === CardTypes.ACCOUNTS && {height: 100},
+        type === CardTypes.CHECKING && {paddingVertical: 20},
+      ]}>
       <ListItem.Content>
-        <View style={itemStyle}>
-          <View style={leftContentStyle}>
-            <ListItem.Title style={titleStyle}>
-              {title}
-              {titleIcon && <Image source={titleIcon} style={iconStyle} />}
-            </ListItem.Title>
-            <ListItem.Subtitle style={subTitleStyle}>
-              {subTitle}
-            </ListItem.Subtitle>
-          </View>
-          <View style={rightContentStyle}>
-            <Text style={amountBigStyle}>
-              ${getValue(amount, false)}.
-              <Text style={amountSmallStyle}>{getValue(amount, true)}</Text>
-            </Text>
-            <ListItem.Chevron size={24} color={colors.pink} />
+        <View style={itemContainer}>
+          {special === 'special' && (
+            <View style={specialIcon}>
+              <Image source={require('../../Assets/Images/confetti2.png')} />
+            </View>
+          )}
+          <View style={itemStyle}>
+            <View style={leftContentStyle}>
+              <ListItem.Title style={[titleStyle, !!special && specialGreen]}>
+                {title}
+                {titleIcon && <Image source={titleIcon} style={iconStyle} />}
+              </ListItem.Title>
+              <ListItem.Subtitle
+                style={[subTitleStyle, !!special && specialGreen]}>
+                {subTitle}
+              </ListItem.Subtitle>
+            </View>
+            <View style={rightContentStyle}>
+              <Text style={[amountBigStyle, !!special && specialGreen]}>
+                ${getValue(amount, false)}.
+                <Text style={[amountSmallStyle, !!special && specialGreen]}>
+                  {getValue(amount, true)}
+                </Text>
+              </Text>
+              {chevron && <ListItem.Chevron size={24} color={colors.pink} />}
+            </View>
           </View>
         </View>
+
         {info && <Text style={infoTextStyle}>{info}</Text>}
       </ListItem.Content>
     </ListItem>
@@ -73,8 +97,11 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     borderRadius: 7,
   },
+  itemContainer: {
+    flexDirection: 'row',
+  },
   itemStyle: {
-    width: '100%',
+    flexGrow: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -121,5 +148,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: 'center',
     color: colors.green,
+  },
+  specialGreen: {
+    color: colors.green,
+  },
+  specialIcon: {
+    marginRight: 10,
+    justifyContent: 'center',
   },
 });

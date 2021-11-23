@@ -1,7 +1,6 @@
 import React, {FC} from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import colors from '../../colors/colors';
-// import {Button} from 'react-native-elements';
 import {
   CashHeader,
   GoBackBTN,
@@ -11,6 +10,7 @@ import {
 } from '../../components';
 import {StackNavigationProp} from '../SignedApp/constants';
 import {AppHeader} from '../../theme';
+import {CardTypes} from '../../components/CashCardItem/constants';
 
 interface IAccounts {
   navigation: StackNavigationProp;
@@ -51,7 +51,7 @@ export const Accounts: FC<IAccounts> = ({navigation}) => {
                 title="Checking"
                 subTitle="Main account (...0353)"
                 amount="1,500.20"
-                isBig={true}
+                type={CardTypes.ACCOUNTS}
               />
             </TouchableOpacity>
           </View>
@@ -64,8 +64,8 @@ export const Accounts: FC<IAccounts> = ({navigation}) => {
                 title="Savings"
                 subTitle="Buy a house (...4044)"
                 amount="5,000.20"
-                isBig={true}
                 info="Savings is up 3% from last month"
+                type={CardTypes.ACCOUNTS}
               />
             </TouchableOpacity>
           </View>
@@ -76,7 +76,7 @@ export const Accounts: FC<IAccounts> = ({navigation}) => {
                 subTitle="Cash Rewards"
                 titleIcon={require('../../Assets/Images/heart.png')}
                 amount="500.40"
-                isBig={true}
+                type={CardTypes.ACCOUNTS}
               />
             </TouchableOpacity>
           </View>
