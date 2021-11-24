@@ -1,3 +1,4 @@
+import {Dimensions} from 'react-native';
 import {StackParams} from '../SignedApp/constants';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
@@ -13,6 +14,8 @@ export interface ICardProps {
   date: string;
   amount: string;
 }
+
+export const SCREEN_WIDTH = Dimensions.get('window').width;
 
 export const DATA: Array<ICardProps> = [
   {

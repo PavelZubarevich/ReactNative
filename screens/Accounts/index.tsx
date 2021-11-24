@@ -8,13 +8,9 @@ import {
   IconButton,
   CashCardItem,
 } from '../../components';
-import {StackNavigationProp} from '../SignedApp/constants';
 import {AppHeader} from '../../theme';
 import {CardTypes} from '../../components/CashCardItem/constants';
-
-interface IAccounts {
-  navigation: StackNavigationProp;
-}
+import {IAccounts, SCREEN_WIDTH} from './constants';
 
 export const Accounts: FC<IAccounts> = ({navigation}) => {
   const {main, actionButtons, cards, card} = styles;
@@ -90,7 +86,7 @@ const styles = StyleSheet.create({
     minHeight: '100%',
     paddingTop: 40,
     paddingBottom: 190,
-    paddingHorizontal: 15,
+    paddingHorizontal: SCREEN_WIDTH > 576 ? '10%' : 15,
     backgroundColor: colors.light,
     alignItems: 'center',
   },

@@ -8,7 +8,7 @@ import {
   ListRenderItem,
 } from 'react-native';
 import {GoBackBTN, Title, CashHeader, CashCardItem} from '../../components';
-import {IChecking, ISectionList, DATA} from './constants';
+import {IChecking, ISectionList, DATA, SCREEN_WIDTH} from './constants';
 import {AppHeader} from '../../theme/index';
 import colors from '../../colors/colors';
 import {OvalOutlinedButton, SearchBar} from '../../theme';
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     minHeight: '100%',
     paddingTop: 0,
     paddingBottom: 190,
-    paddingHorizontal: 15,
+    paddingHorizontal: SCREEN_WIDTH > 576 ? '10%' : 15,
     backgroundColor: colors.light,
   },
   sectionHeader: {

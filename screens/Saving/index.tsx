@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import {Divider} from 'react-native-elements';
 import {GoBackBTN, Title, CashHeader, CashCardItem} from '../../components';
-import {ICardProps, ISaving, DATA} from './constants';
+import {ICardProps, ISaving, DATA, SCREEN_WIDTH} from './constants';
 import {AppHeader, SearchBar, OvalOutlinedButton} from '../../theme';
 import colors from '../../colors/colors';
 import {CardTypes} from '../../components/CashCardItem/constants';
@@ -118,8 +118,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   sectionHeader: {
+    alignItems: 'center',
     paddingTop: 40,
-    paddingHorizontal: 15,
+    paddingHorizontal: SCREEN_WIDTH > 576 ? '10%' : 15,
     backgroundColor: colors.white,
   },
   filterGroup: {
@@ -141,7 +142,7 @@ const styles = StyleSheet.create({
     maxWidth: '100%',
   },
   infoBlock: {
-    paddingHorizontal: 15,
+    paddingHorizontal: SCREEN_WIDTH > 576 ? '10%' : 15,
     paddingTop: 15,
   },
   listHeader: {
