@@ -11,3 +11,5 @@ declare module '@n1ru4l/react-in-center-of-screen' {
 }
 
 declare module 'react-native-video-controls';
+declare module 'react-native-mask-loader';
+declare module 'react-native-animated-splash-screen';
