@@ -2,7 +2,7 @@ name: Distribute
 
 on:
   push:
-    branches: [ test ]
+    branches: [test]
 
 jobs:
   distribute:
@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: '2.6'
-          
+
       - name: Install bundle
         run: |
           bundle config path vendor/bundle
