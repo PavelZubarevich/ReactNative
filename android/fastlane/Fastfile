@@ -44,7 +44,7 @@ platform :android do
         gradle(task: "clean assembleRelease")
         firebase_app_distribution(
             service_credentials_file: "firebase_credentials.json",
-            app: ,
+            app: ENV['FIREBASE_APP_ID'],
             # release_notes_file: "FirebaseAppDistributionConfig/release_notes.txt",
             # testers_file: "FirebaseAppDistributionConfig/testers.txt",
             # groups_file: "FirebaseAppDistributionConfig/groups.txt"
