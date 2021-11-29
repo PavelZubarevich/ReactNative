@@ -17,8 +17,8 @@ jobs:
 
       - name: Install bundle
         run: |
-          bundle config path ../../android
-          bundle install --jobs 4 --retry 3
+          gem update
+          BUNDLE_GEMFILE="./Gemfile" bundle install
       - name: Create Firebase Service Credentials file
         run: |
           echo "$FIREBASE_CREDENTIALS" > firebase_credentials.json.b64
