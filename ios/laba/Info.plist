@@ -52,6 +52,10 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>UIAppFonts</key>
-	<array/>
+	<array>
+		<string>SFProRounded-Bold.otf</string>
+		<string>SFProRounded-Light.otf</string>
+		<string>SFProRounded-Regular.otf</string>
+	</array>
 </dict>
 </plist>
