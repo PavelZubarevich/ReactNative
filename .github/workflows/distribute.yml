@@ -1,11 +1,11 @@
-name: Distribute
+name: diawi
 
 on:
   push:
     branches: [test]
 
 jobs:
-  distribute:
+  diawi:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,18 +14,3 @@ jobs:
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: '2.6'
-
-      - name: Install bundle
-        run: |
-          gem update
-          BUNDLE_GEMFILE="./Gemfile" bundle install
-      - name: Create Firebase Service Credentials file
-        run: |
-          echo "$FIREBASE_CREDENTIALS" > firebase_credentials.json.b64
-          base64 -d -i firebase_credentials.json.b64 > firebase_credentials.json
-        env:
-          FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
-      - name: Distribute app with 🔥 App Distribution 🚀
-        run: bundle exec fastlane distribute
-        env:
-          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
