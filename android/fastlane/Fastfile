@@ -53,7 +53,7 @@ platform :android do
 
     desc "Lane for distributing app using Firebase App Distributions"
     lane :diawi do
-        gradle(task: "clean assembleRelease")
+        # gradle(task: "clean assembleRelease")
         diawi(
           token: "9FnK3AuGpNwLHO1MAvoLBvKqqBFZT4fYzqigJ8aaei",
           callback_emails:"artur.cherkanov@gmail.com,pavelzubarevich@gmail.com"
