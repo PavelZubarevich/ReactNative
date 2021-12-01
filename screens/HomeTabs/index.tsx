@@ -65,6 +65,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.pink,
     alignSelf: 'center',
     width: '50%',
-    height: 20,
+    height: 35,
   },
 });

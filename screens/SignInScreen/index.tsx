@@ -59,7 +59,7 @@ export const SignIn = (props: Props) => {
             //     alg: 'HS256',
             //   },
             // ),
-            'kfsdjl',
+            'kfsdjl'
           );
         } else {
           reject();

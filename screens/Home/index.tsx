@@ -1,10 +1,9 @@
 import React, {FC, useState, useEffect} from 'react';
-import {StyleSheet, View, Text, ListRenderItem} from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
+import {StyleSheet, View, Text, ListRenderItem, FlatList} from 'react-native';
 import colors from '../../colors/colors';
 import {BurgerBTN, Title, CashCard, GoodnessCard} from '../../components';
 import {AppHeader} from '../../theme';
-import {data, months, windowHeight, boxHeight, ICardProps} from './constants';
+import {data, months, windowHeight, boxHeight, ICardProps, SCREEN_WIDTH} from './constants';
 import {
   OffsetYProvider,
   IndexProvider,
@@ -46,7 +45,7 @@ export const Home: FC = () => {
         <OffsetYProvider
           columnsPerRow={1}
           listItemHeight={boxHeight}
-          centerYStart={(windowHeight * 1) / 3}
+          centerYStart={(windowHeight * 1.2) / 3}
           centerYEnd={(windowHeight * 2) / 3}
           contentOffset={450}>
           {({setOffsetY}: any) => (
@@ -76,7 +75,7 @@ const styles = StyleSheet.create({
   main: {
     minHeight: '100%',
     paddingBottom: 190,
-    paddingHorizontal: 15,
+    paddingHorizontal: SCREEN_WIDTH > 576 ? '15%' : 15,
     backgroundColor: colors.light,
   },
   greeting: {
