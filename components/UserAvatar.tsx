@@ -1,7 +1,7 @@
 import React, {FC, useState} from 'react';
 import {StyleSheet, Dimensions} from 'react-native';
 import {Avatar} from 'react-native-elements';
-import {LogOutModal} from '../components';
+import {AvatarModal} from './';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -21,7 +21,7 @@ export const UserAvatar: FC = () => {
         containerStyle={main}
         onPress={modalHandler}
       />
-      <LogOutModal showModal={showModal} modalHandler={modalHandler} />
+      <AvatarModal showModal={showModal} modalHandler={modalHandler} />
     </>
   );
 };
