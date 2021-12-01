@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import colors from '../colors/colors';
 
 interface IHeader {
-  title: string;
+  title?: string;
 }
 
 export const CashHeader: FC<IHeader> = ({title}) => {
@@ -11,7 +11,7 @@ export const CashHeader: FC<IHeader> = ({title}) => {
     styles;
   return (
     <View style={header}>
-      <Text style={titleStyle}>{title}</Text>
+      {title && <Text style={titleStyle}>{title}</Text>}
       <Text style={amountMainStyle}>
         $7,000.<Text style={amountSubStyle}>80</Text>
       </Text>
