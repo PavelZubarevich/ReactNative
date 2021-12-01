@@ -1,11 +1,11 @@
-import {actionsTypes, authState, actions} from '../types';
+import {actionsTypes, authState, authActions} from '../types/signIn';
 
 const initialState: authState = {
   jwt: '',
   error: '',
 };
 
-export function authReducer(state = initialState, action: actions) {
+export function authReducer(state = initialState, action: authActions) {
   switch (action.type) {
     case actionsTypes.LOGIN:
       return {jwt: action.jwt};

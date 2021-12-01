@@ -9,6 +9,7 @@ interface ICustomInput {
   label?: string;
   placeholder?: string;
   value?: string;
+  disabled?: boolean;
   secureTextEntry?: boolean;
   onChangeText?: (text: string) => void;
 }
@@ -17,6 +18,7 @@ export const CustomInput: FC<ICustomInput> = ({
   label,
   placeholder,
   value,
+  disabled,
   secureTextEntry,
   onChangeText,
 }) => {
@@ -33,6 +35,7 @@ export const CustomInput: FC<ICustomInput> = ({
       value={value}
       secureTextEntry={secureTextEntry}
       onChangeText={onChangeText}
+      disabled={disabled}
     />
   );
 };
@@ -46,6 +49,7 @@ const styles = StyleSheet.create({
   },
   labelStyle: {
     fontSize: SCREEN_WIDTH > 576 ? 22 : 16,
+    color: colors.grey,
   },
   containerStyle: {
     paddingHorizontal: 0,

@@ -7,3 +7,5 @@ export {Payments} from './Payments';
 export {Saving} from './Saving';
 export {HomeTabs} from './HomeTabs';
 export {SignedApp} from './SignedApp';
+export {FullScreenVideo} from './FullScreenVideo';
+export {Camera} from './Camera';

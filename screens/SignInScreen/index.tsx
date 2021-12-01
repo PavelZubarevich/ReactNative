@@ -19,7 +19,7 @@ import {
   TextButton,
 } from '../../theme';
 import {SCREEN_WIDTH, Props, connector} from './constants';
-import jwt from 'react-native-pure-jwt';
+// import jwt from 'react-native-pure-jwt';
 
 export const SignIn = (props: Props) => {
   const [isHorizontal, serHorizontal] = useState<boolean>(false);
@@ -48,17 +48,18 @@ export const SignIn = (props: Props) => {
           password === 'admin'
         ) {
           resolve(
-            jwt.sign(
-              {
-                iss: email,
-                exp: new Date().getTime() + 3600 * 1000,
-                name: 'Danny',
-              },
-              'my-secret',
-              {
-                alg: 'HS256',
-              },
-            ),
+            // jwt.sign(
+            //   {
+            //     iss: email,
+            //     exp: new Date().getTime() + 3600 * 1000,
+            //     name: 'Danny',
+            //   },
+            //   'my-secret',
+            //   {
+            //     alg: 'HS256',
+            //   },
+            // ),
+            'kfsdjl'
           );
         } else {
           reject();
@@ -86,6 +87,7 @@ export const SignIn = (props: Props) => {
     bottomBlock,
     bottomButtons,
     bottomTitle,
+    outlineButtonContainer,
   } = styles;
 
   const {
@@ -149,7 +151,6 @@ export const SignIn = (props: Props) => {
                       <ActivityIndicator color={colors.grey} size={26} />
                     )
                   }
-                  titleColor="#fff"
                   buttonColor={colors.pink}
                   onPress={signInHandl}
                 />
@@ -162,16 +163,20 @@ export const SignIn = (props: Props) => {
           <Text style={bottomTitle}>Lets test 2 ways to log in</Text>
           <View
             style={[bottomButtons, isHorizontal && horizontalBottomButtons]}>
-            <OvalOutlinedButton
-              title="Touch ID"
-              titleColor={colors.grey}
-              buttonColor={colors.grey}
-            />
-            <OvalOutlinedButton
-              title="Face ID"
-              titleColor={colors.darkGrey}
-              buttonColor={colors.darkGrey}
-            />
+            <View style={outlineButtonContainer}>
+              <OvalOutlinedButton
+                title="Touch ID"
+                titleColor={colors.grey}
+                buttonColor={colors.grey}
+              />
+            </View>
+            <View style={outlineButtonContainer}>
+              <OvalOutlinedButton
+                title="Face ID"
+                titleColor={colors.darkGrey}
+                buttonColor={colors.darkGrey}
+              />
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -233,6 +238,9 @@ const styles = StyleSheet.create({
   bottomButtons: {
     width: '100%',
     flexDirection: 'row',
+  },
+  outlineButtonContainer: {
+    height: 35,
   },
 });
 
