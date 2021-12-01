@@ -87,6 +87,7 @@ export const SignIn = (props: Props) => {
     bottomBlock,
     bottomButtons,
     bottomTitle,
+    outlineButtonContainer,
   } = styles;
 
   const {
@@ -162,16 +163,20 @@ export const SignIn = (props: Props) => {
           <Text style={bottomTitle}>Lets test 2 ways to log in</Text>
           <View
             style={[bottomButtons, isHorizontal && horizontalBottomButtons]}>
-            <OvalOutlinedButton
-              title="Touch ID"
-              titleColor={colors.grey}
-              buttonColor={colors.grey}
-            />
-            <OvalOutlinedButton
-              title="Face ID"
-              titleColor={colors.darkGrey}
-              buttonColor={colors.darkGrey}
-            />
+            <View style={outlineButtonContainer}>
+              <OvalOutlinedButton
+                title="Touch ID"
+                titleColor={colors.grey}
+                buttonColor={colors.grey}
+              />
+            </View>
+            <View style={outlineButtonContainer}>
+              <OvalOutlinedButton
+                title="Face ID"
+                titleColor={colors.darkGrey}
+                buttonColor={colors.darkGrey}
+              />
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -233,6 +238,9 @@ const styles = StyleSheet.create({
   bottomButtons: {
     width: '100%',
     flexDirection: 'row',
+  },
+  outlineButtonContainer: {
+    height: 35,
   },
 });
 
