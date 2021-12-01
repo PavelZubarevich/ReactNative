@@ -5,7 +5,7 @@ on:
     branches: [test]
 
 jobs:
-  diawi:
+  run:
     runs-on: ubuntu-latest
 
     steps:
