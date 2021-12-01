@@ -36,6 +36,11 @@ Submit a new Beta Build to Firebase app distribution
 fastlane android distribute
 ```
 Lane for distributing app using Firebase App Distributions
+### android diawi
+```
+fastlane android diawi
+```
+Lane for distributing app using Firebase App Distributions
 
 ----
 
