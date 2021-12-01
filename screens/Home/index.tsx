@@ -27,7 +27,7 @@ export const Home: FC = () => {
     } else if (time > 9 && time <= 15) {
       setDayPart('Afternoon');
     } else {
-      setDayPart('Evening');
+      setDayPart('Eveningihjdlohgnjdfk');
     }
   }, []);
 
