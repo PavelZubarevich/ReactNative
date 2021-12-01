@@ -10,7 +10,13 @@ import {
 } from '../../components';
 import {AppHeader} from '../../theme';
 import {CardTypes} from '../../components/CashCardItem/constants';
-import {IAccounts, SCREEN_WIDTH} from './constants';
+import {
+  IAccounts,
+  SCREEN_WIDTH,
+  iconSend,
+  iconPay,
+  iconChecking,
+} from './constants';
 
 export const Accounts: FC<IAccounts> = ({navigation}) => {
   const {main, actionButtons, cards, card} = styles;
@@ -23,18 +29,9 @@ export const Accounts: FC<IAccounts> = ({navigation}) => {
       <View style={main}>
         <CashHeader />
         <View style={actionButtons}>
-          <IconButton
-            img={require('../../Assets/Images/circleButtonSend.png')}
-            text="Send"
-          />
-          <IconButton
-            img={require('../../Assets/Images/circleButtonPay.png')}
-            text="Pay"
-          />
-          <IconButton
-            img={require('../../Assets/Images/circleButtonChecking.png')}
-            text="Transfer"
-          />
+          <IconButton img={iconSend} text="Send" />
+          <IconButton img={iconPay} text="Pay" />
+          <IconButton img={iconChecking} text="Transfer" />
         </View>
 
         <View style={cards}>
