@@ -1,3 +1,4 @@
+import {Dimensions} from 'react-native';
 import {StackParams} from '../SignedApp/constants';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
@@ -26,6 +27,8 @@ interface IData {
   title: string;
   data: Array<data>;
 }
+
+export const SCREEN_WIDTH = Dimensions.get('window').width;
 
 export const DATA: Array<IData> = [
   {

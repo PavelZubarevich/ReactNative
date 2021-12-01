@@ -54,6 +54,7 @@ export const CashCardItem: FC<IItem> = ({
         containerStyle,
         type === CardTypes.ACCOUNTS && {height: 100},
         type === CardTypes.CHECKING && {paddingVertical: 20},
+        type === CardTypes.SAVING && {paddingVertical: 20},
       ]}>
       <ListItem.Content>
         <View style={itemContainer}>
@@ -64,7 +65,11 @@ export const CashCardItem: FC<IItem> = ({
           )}
           <View style={itemStyle}>
             <View style={leftContentStyle}>
-              <ListItem.Title style={[titleStyle, !!special && specialGreen]}>
+              <ListItem.Title
+                style={[
+                  titleStyle,
+                  (!!special || type === CardTypes.SAVING) && specialGreen,
+                ]}>
                 {title}
                 {titleIcon && <Image source={titleIcon} style={iconStyle} />}
               </ListItem.Title>
@@ -74,9 +79,17 @@ export const CashCardItem: FC<IItem> = ({
               </ListItem.Subtitle>
             </View>
             <View style={rightContentStyle}>
-              <Text style={[amountBigStyle, !!special && specialGreen]}>
+              <Text
+                style={[
+                  amountBigStyle,
+                  (!!special || type === CardTypes.SAVING) && specialGreen,
+                ]}>
                 ${getValue(amount, false)}.
-                <Text style={[amountSmallStyle, !!special && specialGreen]}>
+                <Text
+                  style={[
+                    amountSmallStyle,
+                    (!!special || type === CardTypes.SAVING) && specialGreen,
+                  ]}>
                   {getValue(amount, true)}
                 </Text>
               </Text>
