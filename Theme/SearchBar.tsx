@@ -12,14 +12,14 @@ interface ISearchBar {
 }
 
 export const SearchBarCustom: FC<ISearchBar> = ({
-  placeholder,
+  placeholder = '',
   disabled,
   secureTextEntry,
 }) => {
   const {inputStyle, labelStyle, containerStyle, inputContainerStyle} = styles;
   return (
     <SearchBar
-      placeholder={placeholder || ''}
+      placeholder={placeholder}
       placeholderTextColor={colors.grey}
       inputStyle={inputStyle}
       labelStyle={labelStyle}
