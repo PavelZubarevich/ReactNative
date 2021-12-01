@@ -3,7 +3,14 @@ import {StyleSheet, View, Text, ListRenderItem, FlatList} from 'react-native';
 import colors from '../../colors/colors';
 import {BurgerBTN, Title, CashCard, GoodnessCard} from '../../components';
 import {AppHeader} from '../../theme';
-import {data, months, windowHeight, boxHeight, ICardProps, SCREEN_WIDTH} from './constants';
+import {
+  data,
+  months,
+  windowHeight,
+  boxHeight,
+  ICardProps,
+  SCREEN_WIDTH,
+} from './constants';
 import {
   OffsetYProvider,
   IndexProvider,
@@ -73,7 +80,7 @@ export const Home: FC = () => {
 
 const styles = StyleSheet.create({
   main: {
-    minHeight: '100%',
+    minHeight: '1000%',
     paddingBottom: 190,
     paddingHorizontal: SCREEN_WIDTH > 576 ? '15%' : 15,
     backgroundColor: colors.light,
