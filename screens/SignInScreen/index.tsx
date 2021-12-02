@@ -19,7 +19,6 @@ import {
   TextButton,
 } from '../../theme';
 import {SCREEN_WIDTH, Props, connector} from './constants';
-// import jwt from 'react-native-pure-jwt';
 
 export const SignIn = (props: Props) => {
   const [isHorizontal, serHorizontal] = useState<boolean>(false);
@@ -47,20 +46,7 @@ export const SignIn = (props: Props) => {
           /^[A-Za-z]+@itechart-group.com/.test(email) &&
           password === 'admin'
         ) {
-          resolve(
-            // jwt.sign(
-            //   {
-            //     iss: email,
-            //     exp: new Date().getTime() + 3600 * 1000,
-            //     name: 'Danny',
-            //   },
-            //   'my-secret',
-            //   {
-            //     alg: 'HS256',
-            //   },
-            // ),
-            'kfsdjl',
-          );
+          resolve('kfsdjl');
         } else {
           reject();
         }
