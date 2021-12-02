@@ -3,7 +3,14 @@ import {StyleSheet, View, Text, ListRenderItem, FlatList} from 'react-native';
 import colors from '../../colors/colors';
 import {BurgerBTN, Title, CashCard, GoodnessCard} from '../../components';
 import {AppHeader} from '../../theme';
-import {data, months, windowHeight, boxHeight, ICardProps, SCREEN_WIDTH} from './constants';
+import {
+  data,
+  months,
+  windowHeight,
+  boxHeight,
+  ICardProps,
+  SCREEN_WIDTH,
+} from './constants';
 import {
   OffsetYProvider,
   IndexProvider,
