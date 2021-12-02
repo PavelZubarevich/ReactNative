@@ -33,7 +33,7 @@ export const Home: FC = () => {
 
   const generateGreeting = () => {
     const date = new Date();
-    return `Good ${dayPart} Danny | ${
+    return `I Good ${dayPart} Danny | ${
       months[date.getMonth()]
     } ${date.getDate()}, ${date.getFullYear()}`;
   };
