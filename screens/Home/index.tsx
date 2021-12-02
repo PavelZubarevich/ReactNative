@@ -80,7 +80,7 @@ export const Home: FC = () => {
 
 const styles = StyleSheet.create({
   main: {
-    minHeight: '1000%',
+    minHeight: '100%',
     paddingBottom: 190,
     paddingHorizontal: SCREEN_WIDTH > 576 ? '15%' : 15,
     backgroundColor: colors.light,
