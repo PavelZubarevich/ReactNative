@@ -9,9 +9,8 @@ import {
 } from 'react-native';
 import {GoBackBTN, Title, CashHeader, CashCardItem} from '../../components';
 import {IChecking, ISectionList, DATA, SCREEN_WIDTH} from './constants';
-import {AppHeader} from '../../theme/index';
 import colors from '../../colors/colors';
-import {OvalOutlinedButton, SearchBar} from '../../theme';
+import {OvalOutlinedButton, SearchBar, AppHeader} from '../../theme';
 import {Divider} from 'react-native-elements';
 import {CardTypes} from '../../components/CashCardItem/constants';
 
