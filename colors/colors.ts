@@ -6,5 +6,4 @@ export default {
   light: '#f7f8fb',
   green: '#00CC00',
   white: '#fff',
-  whiteaaaaa: '#fff',
 };
