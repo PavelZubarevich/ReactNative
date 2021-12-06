@@ -5,4 +5,4 @@ export {OvalOutlinedButton} from './OvalOutlinedButton';
 export {TextButton} from './TextButton';
 export {OvalTextInput} from './OvalTextInput';
 export {SearchBarCustom as SearchBar} from './SearchBar';
-export {SearchBarCustom as SearchBarius} from './SearchBar';
+export {SearchBarCustom as SearchBarius1} from './SearchBar';
