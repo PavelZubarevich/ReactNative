@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   ListRenderItem,
   Text,
-  ScrollView,
 } from 'react-native';
 import {Divider} from 'react-native-elements';
 import {GoBackBTN, Title, CashHeader, CashCardItem} from '../../components';
@@ -39,7 +38,6 @@ export const Saving: FC<ISaving> = ({route}) => {
     search,
     filterBtn,
     graphStyle,
-    infoBlock,
     listHeader,
     listStyle,
     infoLine,
@@ -54,49 +52,51 @@ export const Saving: FC<ISaving> = ({route}) => {
           <Title title={'Saving'} subTitle={route.params?.subTitle} />
         }
       />
-      <ScrollView style={main}>
-        <View style={sectionHeader}>
-          <CashHeader />
-          <Image
-            source={require('../../Assets/Images/savingsGraphV2.png')}
-            style={graphStyle}
-          />
-        </View>
-        <View style={infoBlock}>
-          <View style={infoLine}>
-            <Text style={infoText}>Total ingertd gained</Text>
-            <Text style={infoValue}>+$50.00</Text>
-          </View>
-          <View style={infoLine}>
-            <Text style={infoText}>Goodness points Gained</Text>
-            <Text style={infoValue}>+600</Text>
-          </View>
+      <View style={main}>
+        <FlatList
+          data={DATA}
+          keyExtractor={(item, index) => `${item}${index}`}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={listStyle}
+          ListHeaderComponent={
+            <>
+              <View style={sectionHeader}>
+                <CashHeader />
+                <Image
+                  source={require('../../Assets/Images/savingsGraphV2.png')}
+                  style={graphStyle}
+                />
+              </View>
+              <View style={infoLine}>
+                <Text style={infoText}>Total ingertd gained</Text>
+                <Text style={infoValue}>+$50.00</Text>
+              </View>
+              <View style={infoLine}>
+                <Text style={infoText}>Goodness points Gained</Text>
+                <Text style={infoValue}>+600</Text>
+              </View>
 
-          <View style={filterGroup}>
-            <View style={search}>
-              <SearchBar placeholder="Search transiction" />
-            </View>
-            <View style={filterBtn}>
-              <OvalOutlinedButton title="Filter by" titleColor={colors.grey} />
-            </View>
-          </View>
-          <FlatList
-            data={DATA}
-            keyExtractor={(item, index) => `${item}${index}`}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={listStyle}
-            scrollEnabled={false}
-            ListHeaderComponent={
+              <View style={filterGroup}>
+                <View style={search}>
+                  <SearchBar placeholder="Search transiction" />
+                </View>
+                <View style={filterBtn}>
+                  <OvalOutlinedButton
+                    title="Filter by"
+                    titleColor={colors.grey}
+                  />
+                </View>
+              </View>
               <View style={listHeader}>
                 <Text>End day balance - Jul 11</Text>
                 <Text>$5,000</Text>
               </View>
-            }
-            renderItem={renderItem}
-            ItemSeparatorComponent={() => <Divider />}
-          />
-        </View>
-      </ScrollView>
+            </>
+          }
+          renderItem={renderItem}
+          ItemSeparatorComponent={() => <Divider />}
+        />
+      </View>
     </View>
   );
 };
@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   main: {
+    flex: 1,
     minHeight: '100%',
     backgroundColor: colors.light,
   },
@@ -122,6 +123,7 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingHorizontal: SCREEN_WIDTH > 576 ? '10%' : 15,
     backgroundColor: colors.white,
+    marginBottom: 15,
   },
   filterGroup: {
     marginBottom: 20,
@@ -141,10 +143,6 @@ const styles = StyleSheet.create({
     maxHeight: 190,
     maxWidth: '100%',
   },
-  infoBlock: {
-    paddingHorizontal: SCREEN_WIDTH > 576 ? '10%' : 15,
-    paddingTop: 15,
-  },
   listHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -159,7 +157,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.lightGrey,
     borderRadius: 10,
-    marginBottom: 240,
+    marginBottom: 0,
+    paddingBottom: 130,
+    paddingHorizontal: SCREEN_WIDTH > 576 ? '10%' : 15,
   },
   infoLine: {
     flexDirection: 'row',
