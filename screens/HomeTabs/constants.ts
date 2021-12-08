@@ -1,6 +1,7 @@
 import {ComponentType} from 'react';
 import {ImageSourcePropType, Platform} from 'react-native';
-import {Home, Accounts, Giving, Payments, Cards} from '../';
+import {Accounts, Giving, Payments, Cards} from '../';
+import Home from '../Home';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 export type BottomBarParams = {

@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {StyleSheet, Dimensions} from 'react-native';
 import {Header} from 'react-native-elements';
 import colors from '../colors/colors';
-import {UserAvatar} from '../components';
+import UserAvatar from '../components/UserAvatar';
 
 type HeaderSubComponent = React.ReactElement<{}>;
 

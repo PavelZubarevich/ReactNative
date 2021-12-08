@@ -1,4 +1,6 @@
 import {Dimensions} from 'react-native';
+import {connect, ConnectedProps} from 'react-redux';
+import {connectDataState} from '../../redux/types/data';
 
 export enum months {
   'Jan',
@@ -21,7 +23,15 @@ export interface ICardProps {
   video?: string;
 }
 
-export const {height: windowHeight, width: SCREEN_WIDTH} = Dimensions.get('window');
+const mapState = (state: connectDataState) => ({
+  name: state.data.fullName,
+});
+
+export const connector = connect(mapState);
+export type Props = ConnectedProps<typeof connector>;
+
+export const {height: windowHeight, width: SCREEN_WIDTH} =
+  Dimensions.get('window');
 
 export const boxHeight = windowHeight / 2;
 

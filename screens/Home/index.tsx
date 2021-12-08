@@ -10,13 +10,15 @@ import {
   boxHeight,
   ICardProps,
   SCREEN_WIDTH,
+  Props,
+  connector,
 } from './constants';
 import {
   OffsetYProvider,
   IndexProvider,
 } from '@n1ru4l/react-in-center-of-screen';
 
-export const Home: FC = () => {
+const Home: FC<Props> = ({name}) => {
   const [dayPart, setDayPart] = useState<string>('');
 
   useEffect(() => {
@@ -33,7 +35,7 @@ export const Home: FC = () => {
 
   const generateGreeting = () => {
     const date = new Date();
-    return `Good ${dayPart} Danny | ${
+    return `Good ${dayPart} ${name} | ${
       months[date.getMonth()]
     } ${date.getDate()}, ${date.getFullYear()}`;
   };
@@ -77,6 +79,8 @@ export const Home: FC = () => {
     </View>
   );
 };
+
+export default connector(Home);
 
 const styles = StyleSheet.create({
   main: {

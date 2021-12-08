@@ -2,10 +2,19 @@ import React, {FC, useState} from 'react';
 import {StyleSheet, Dimensions} from 'react-native';
 import {Avatar} from 'react-native-elements';
 import {AvatarModal} from './';
+import {connect, ConnectedProps} from 'react-redux';
+import {connectDataState} from '../redux/types/data';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-export const UserAvatar: FC = () => {
+const mapState = (state: connectDataState) => ({
+  avatarSource: state.data.avatarSource,
+});
+
+const connector = connect(mapState);
+type Props = ConnectedProps<typeof connector>;
+
+const UserAvatar: FC<Props> = ({avatarSource}) => {
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const modalHandler = () => {
@@ -17,7 +26,7 @@ export const UserAvatar: FC = () => {
     <>
       <Avatar
         rounded
-        source={require('../Assets/Images/oval.png')}
+        source={{uri: avatarSource}}
         containerStyle={main}
         onPress={modalHandler}
       />
@@ -25,6 +34,8 @@ export const UserAvatar: FC = () => {
     </>
   );
 };
+
+export default connector(UserAvatar);
 
 const styles = StyleSheet.create({
   main: {
